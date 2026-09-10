@@ -1,7 +1,8 @@
-import { Bell, BookOpen, ClipboardList, Copy, Home, Radio, Users } from 'lucide-react'
+import { Bell, BookOpen, ClipboardList, Copy, Home, Radio, Trash2, Users } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Modal } from '../components/Modal'
 import { AnnouncementsTab } from '../classroom/AnnouncementsTab'
 import { LiveClassTab } from '../classroom/LiveClassTab'
 import { NotesTab } from '../classroom/NotesTab'
@@ -21,6 +22,7 @@ export function ClassroomPage() {
   const [loading, setLoading] = useState(true)
   const [counts, setCounts] = useState({ students: 0, notes: 0, quizzes: 0 })
   const [latestAnnouncement, setLatestAnnouncement] = useState<Announcement | null>(null)
+  const [showDelete, setShowDelete] = useState(false)
 
   useEffect(() => {
     async function load() {
@@ -62,7 +64,15 @@ export function ClassroomPage() {
         <div className="board-dots p-6 md:p-7" style={{ background: '#fff8e0' }}>
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
             <div><p className="eyebrow">{classroom.subject}</p><h1 className="mt-1.5 font-display text-2xl font-medium sm:text-3xl" style={{ color: '#1c1c1e' }}>{classroom.name}</h1><p className="mt-2 max-w-2xl text-sm leading-6" style={{ color: '#555a6a' }}>{classroom.description || 'Class notes, quizzes, announcements and live lessons in one place.'}</p><span className="pill pill-yellow mt-3">Classroom board</span></div>
-            {profile.role === 'teacher' && <button onClick={copyCode} className="btn-secondary shrink-0 bg-white"><span>Class code</span><span className="font-mono tracking-widest">{classroom.class_code}</span><Copy size={15} /></button>}
+            {profile.role === 'teacher' && classroom.teacher_id === profile.id && (
+              <div className="flex shrink-0 flex-wrap gap-2">
+                <button onClick={copyCode} className="btn-secondary bg-white"><span>Class code</span><span className="font-mono tracking-widest">{classroom.class_code}</span><Copy size={15} /></button>
+                <button onClick={() => setShowDelete(true)} className="btn-danger"><Trash2 size={15} />Delete</button>
+              </div>
+            )}
+            {profile.role === 'teacher' && classroom.teacher_id !== profile.id && (
+              <button onClick={copyCode} className="btn-secondary shrink-0 bg-white"><span>Class code</span><span className="font-mono tracking-widest">{classroom.class_code}</span><Copy size={15} /></button>
+            )}
           </div>
         </div>
       </section>
@@ -74,7 +84,70 @@ export function ClassroomPage() {
       {tab === 'notes' && <NotesTab classroomId={classroomId} />}
       {tab === 'quizzes' && <QuizzesTab classroomId={classroomId} />}
       {tab === 'live' && <LiveClassTab classroomId={classroomId} classroomName={classroom.name} />}
+      {showDelete && profile.role === 'teacher' && classroom.teacher_id === profile.id && (
+        <DeleteClassroomModal
+          classroom={classroom}
+          onClose={() => setShowDelete(false)}
+          onDeleted={() => navigate(`/${profile.role}/classes`, { replace: true })}
+        />
+      )}
     </div>
+  )
+}
+
+function DeleteClassroomModal({ classroom, onClose, onDeleted }: { classroom: Classroom; onClose: () => void; onDeleted: () => void }) {
+  const [confirmName, setConfirmName] = useState('')
+  const [busy, setBusy] = useState(false)
+  const matches = confirmName.trim() === classroom.name.trim()
+
+  async function handleDelete() {
+    if (!matches || busy) return
+    setBusy(true)
+    try {
+      const { data: noteRows, error: notesError } = await supabase
+        .from('notes')
+        .select('file_path')
+        .eq('classroom_id', classroom.id)
+      if (notesError) throw notesError
+      const paths = ((noteRows ?? []) as { file_path: string }[])
+        .map((r) => r.file_path)
+        .filter(Boolean)
+      if (paths.length) {
+        const { error: storageError } = await supabase.storage.from('notes').remove(paths)
+        if (storageError) toast.error(`Could not delete all note files: ${storageError.message}`)
+      }
+      const { error: deleteError } = await supabase.from('classrooms').delete().eq('id', classroom.id)
+      if (deleteError) throw deleteError
+      toast.success('Classroom deleted')
+      onDeleted()
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Could not delete classroom')
+      setBusy(false)
+    }
+  }
+
+  return (
+    <Modal title="Delete classroom" onClose={onClose}>
+      <p className="text-sm leading-6" style={{ color: '#555a6a' }}>
+        This permanently deletes <span className="font-medium" style={{ color: '#1c1c1e' }}>{classroom.name}</span> ({classroom.subject} • {classroom.class_code}) including members, announcements, note files, quizzes and results, and live sessions. This cannot be undone.
+      </p>
+      <div className="mt-4">
+        <label className="label">Type classroom name to confirm</label>
+        <input
+          className="input"
+          value={confirmName}
+          onChange={(e) => setConfirmName(e.target.value)}
+          placeholder={classroom.name}
+          autoFocus
+        />
+      </div>
+      <div className="mt-5 flex justify-end gap-2">
+        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button className="btn-danger" disabled={!matches || busy} onClick={handleDelete}>
+          <Trash2 size={15} />{busy ? 'Deleting…' : 'Delete classroom'}
+        </button>
+      </div>
+    </Modal>
   )
 }
 

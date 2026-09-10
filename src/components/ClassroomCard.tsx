@@ -12,12 +12,9 @@ export function ClassroomCard({ classroom, index }: { classroom: Classroom; inde
       className="card group flex flex-col overflow-hidden p-0 transition hover:-translate-y-1"
       style={{ boxShadow: 'rgba(5, 0, 56, 0.06) 0px 4px 12px 0px' }}
     >
-      <div className="board-dots flex items-start justify-between gap-3 p-5" style={{ background: tint }}>
+      <div className="board-dots flex items-start p-5" style={{ background: tint }}>
         <span className="flex h-11 w-11 items-center justify-center rounded-[12px] bg-white" style={{ color: '#1c1c1e', border: '1px solid #eef0f3' }}>
           <BookOpen size={21} />
-        </span>
-        <span className="rounded-full bg-white px-2.5 py-1 font-mono text-xs font-semibold" style={{ color: '#1c1c1e', border: '1px solid #eef0f3' }}>
-          {classroom.class_code}
         </span>
       </div>
       <div className="flex flex-1 flex-col p-5 pt-4">
