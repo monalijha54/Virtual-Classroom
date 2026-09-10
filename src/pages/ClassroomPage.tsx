@@ -67,7 +67,7 @@ export function ClassroomPage() {
             <DecorativeShape kind="circle" color="#CBDA2E" size={36} />
           </div>
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <div><p className="eyebrow" style={{ color: '#F2C230' }}>{classroom.subject}</p><h1 className="h-display mt-2 text-3xl sm:text-4xl">{classroom.name}</h1><p className="mt-2 max-w-2xl text-sm leading-6" style={{ color: '#B7ACA0' }}>{classroom.description || 'Class notes, quizzes, announcements and live lessons in one place.'}</p></div>
+            <div><p className="eyebrow" style={{ color: '#F2C230' }}>{classroom.subject}</p><span className="mt-1.5 block"><DecorativeShape kind="squiggle" color="#F2C230" size={22} /></span><h1 className="h-display mt-2 text-3xl sm:text-4xl">{classroom.name}</h1><p className="mt-2 max-w-2xl text-sm leading-6" style={{ color: '#B7ACA0' }}>{classroom.description || 'Class notes, quizzes, announcements and live lessons in one place.'}</p></div>
             {profile.role === 'teacher' && <button onClick={copyCode} className="flex shrink-0 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-bold transition hover:brightness-95" style={{ background: '#F2C230', color: '#18130F' }}><span>Class code</span><span className="font-mono tracking-widest">{classroom.class_code}</span><Copy size={15} /></button>}
           </div>
         </div>

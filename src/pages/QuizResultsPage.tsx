@@ -46,7 +46,7 @@ export function QuizResultsPage() {
   return (
     <div>
       <Link to={`/class/${quiz.classroom_id}`} className="mb-5 inline-flex items-center gap-2 text-sm font-bold" style={{ color: '#6E6153' }}><ArrowLeft size={16} />Back to classroom</Link>
-      <div className="mb-7"><p className="eyebrow">Quiz results</p><h1 className="h-display mt-1 text-4xl" style={{ color: '#18130F' }}>{quiz.title}</h1><p className="mt-2" style={{ color: '#6E6153' }}>See every student's submitted result.</p></div>
+      <div className="mb-7"><p className="eyebrow flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full" style={{ background: '#CBDA2E' }} />Quiz results</p><h1 className="h-display mt-1 text-4xl" style={{ color: '#18130F' }}>{quiz.title}</h1><p className="mt-2" style={{ color: '#6E6153' }}>See every student's submitted result.</p></div>
       <div className="mb-6 grid gap-4 sm:grid-cols-3">
         <StatCard index={1} label="Submissions" value={attempts.length} icon={<Users size={21} />} />
         <StatCard index={2} label="Class average" value={`${average}%`} icon={<BarChart3 size={21} />} />

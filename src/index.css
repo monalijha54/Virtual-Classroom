@@ -66,10 +66,6 @@ h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
 }
 
-/* Staggered testimonial rhythm for class cards */
-.stagger > *:nth-child(3n + 2) { transform: translateY(10px); }
-@media (max-width: 768px) { .stagger > * { transform: none !important; } }
-
 /* Thin scrollbar for tab rails */
 .tab-rail::-webkit-scrollbar { display: none; }
 .tab-rail { scrollbar-width: none; }

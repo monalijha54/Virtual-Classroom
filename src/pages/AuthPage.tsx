@@ -147,7 +147,7 @@ export function AuthPage({ role }: { role: UserRole }) {
             <DecorativeShape kind="squiggle" color="#F5EFE4" size={30} />
           </div>
         </div>
-        <div className="flex items-center gap-2 text-sm" style={{ color: '#B7ACA0' }}><ShieldCheck size={17} /> Role-based secure access</div>
+        <div className="flex items-center gap-2 text-sm" style={{ color: '#B7ACA0' }}><DecorativeShape kind="sunburst" color="#CBDA2E" size={16} /><ShieldCheck size={17} /> Role-based secure access</div>
       </section>
 
       <section className="flex items-center justify-center p-5 sm:p-8">
