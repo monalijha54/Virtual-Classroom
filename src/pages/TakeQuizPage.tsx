@@ -44,7 +44,7 @@ export function TakeQuizPage() {
       if (error) { toast.error(error.message); return }
       setQuestions((questionData ?? []) as Question[])
 
-      const timerKey = `classly-quiz-start-${quizId}`
+      const timerKey = `rurallearn-quiz-start-${quizId}`
       const stored = Number(localStorage.getItem(timerKey) || 0)
       const now = Date.now()
       const startedAt = stored || now
@@ -81,7 +81,7 @@ export function TakeQuizPage() {
     if (error) return toast.error(error.message)
     const row = Array.isArray(data) ? data[0] : data
     if (!row) return toast.error('Could not read quiz result.')
-    localStorage.removeItem(`classly-quiz-start-${quizId}`)
+    localStorage.removeItem(`rurallearn-quiz-start-${quizId}`)
     const nextResult = { attemptId: row.attempt_id, score: row.score, total: row.total_marks }
     setResult(nextResult)
     await loadReview(row.attempt_id)

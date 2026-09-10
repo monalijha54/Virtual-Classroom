@@ -18,7 +18,7 @@ export function AppLayout() {
     <div className="flex h-full flex-col bg-slate-950 text-white">
       <div className="flex h-18 items-center gap-3 border-b border-white/10 px-5">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500"><GraduationCap size={22} /></div>
-        <div><div className="font-bold">Classly</div><div className="text-xs text-slate-400">Virtual Classroom</div></div>
+        <div><div className="font-bold">RuralLearn</div><div className="text-xs text-slate-400">Online Learning for Rural Students</div></div>
       </div>
       <nav className="flex-1 space-y-1 p-3">
         {links.map(({ to, label, icon: Icon, end }) => (

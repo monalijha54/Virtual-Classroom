@@ -1,10 +1,10 @@
--- Classly V1 database setup - FRESH PROJECT RESET + INSTALL
+-- RuralLearn V1 database setup - FRESH PROJECT RESET + INSTALL
 -- Use this file only on a brand-new/empty Supabase project.
--- It removes any partially-created Classly V1 objects from a failed first run, then recreates them.
+-- It removes any partially-created RuralLearn V1 objects from a failed first run, then recreates them.
 
 begin;
 
--- Clean up a partial previous Classly V1 installation.
+-- Clean up a partial previous RuralLearn V1 installation.
 drop policy if exists "participants download class notes" on storage.objects;
 drop policy if exists "teachers upload class notes" on storage.objects;
 drop policy if exists "teachers delete class notes" on storage.objects;

@@ -128,15 +128,15 @@ export function AuthPage({ role }: { role: UserRole }) {
       <section className="hidden bg-slate-950 p-12 text-white lg:flex lg:flex-col lg:justify-between">
         <Link to="/" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-500"><GraduationCap size={24} /></div>
-          <div><div className="text-lg font-bold">Classly</div><div className="text-xs text-slate-400">Virtual Classroom</div></div>
+          <div><div className="text-lg font-bold">RuralLearn</div><div className="text-xs text-slate-400">Online Learning for Rural Students</div></div>
         </Link>
         <div className="max-w-lg">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-300">
             {isTeacher ? <School size={15} /> : <GraduationCap size={15} />}
             {isTeacher ? 'Teacher Portal' : 'Student Portal'}
           </div>
-          <h1 className="text-4xl font-bold leading-tight">One simple place for classes, notes, quizzes and results.</h1>
-          <p className="mt-5 text-lg leading-8 text-slate-400">A focused virtual classroom built for teaching without unnecessary complexity.</p>
+          <h1 className="text-4xl font-bold leading-tight">Learn anywhere, grow everywhere — classes, notes, quizzes and results.</h1>
+          <p className="mt-5 text-lg leading-8 text-slate-400">Simple online learning built for rural students, without unnecessary complexity.</p>
         </div>
         <div className="flex items-center gap-2 text-sm text-slate-400"><ShieldCheck size={17} /> Role-based secure access</div>
       </section>
@@ -145,7 +145,7 @@ export function AuthPage({ role }: { role: UserRole }) {
         <div className="w-full max-w-md">
           <div className="mb-8 flex items-center gap-3 lg:hidden">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-white"><GraduationCap size={22} /></div>
-            <div className="font-bold">Classly</div>
+            <div className="font-bold">RuralLearn</div>
           </div>
           <div className="mb-7">
             <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-indigo-600">{isTeacher ? 'Teacher portal' : 'Student portal'}</p>

@@ -1,4 +1,4 @@
--- Classly V1 database setup
+-- RuralLearn V1 database setup
 -- Run this entire file in Supabase SQL Editor on a NEW project.
 
 create extension if not exists pgcrypto;

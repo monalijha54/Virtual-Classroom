@@ -1,4 +1,4 @@
-# Classly — Virtual Classroom V1
+# RuralLearn — Learn Anywhere, Grow Everywhere
 
 A college-project-ready virtual classroom built with **React + TypeScript + Tailwind CSS + Supabase + Jitsi Meet**.
 

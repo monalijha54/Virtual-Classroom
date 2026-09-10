@@ -108,7 +108,7 @@ function StartLiveModal({ classroomId, classroomName, teacherId, onClose, onStar
   async function start(e: FormEvent) {
     e.preventDefault(); setBusy(true)
     await supabase.from('live_sessions').update({ active: false, ended_at: new Date().toISOString() }).eq('classroom_id', classroomId).eq('active', true)
-    const room = `classly-${classroomId.replaceAll('-', '')}-${crypto.randomUUID().replaceAll('-', '')}`
+    const room = `rurallearn-${classroomId.replaceAll('-', '')}-${crypto.randomUUID().replaceAll('-', '')}`
     const { error } = await supabase.from('live_sessions').insert({ classroom_id: classroomId, teacher_id: teacherId, title: title.trim(), room_name: room, active: true })
     setBusy(false)
     if (error) return toast.error(error.message)
