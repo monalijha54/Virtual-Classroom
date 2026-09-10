@@ -40,13 +40,13 @@ export function QuizResultsPage() {
     return Math.round(attempts.reduce((sum, a) => sum + (a.total_marks ? a.score / a.total_marks * 100 : 0), 0) / attempts.length)
   }, [attempts])
 
-  if (loading) return <div className="py-20 text-center" style={{ color: '#6E6153' }}>Loading results…</div>
+  if (loading) return <div className="py-20 text-center" style={{ color: '#555a6a' }}>Loading results…</div>
   if (!quiz) return null
 
   return (
     <div>
-      <Link to={`/class/${quiz.classroom_id}`} className="mb-5 inline-flex items-center gap-2 text-sm font-bold" style={{ color: '#6E6153' }}><ArrowLeft size={16} />Back to classroom</Link>
-      <div className="mb-7"><p className="eyebrow">Quiz results</p><h1 className="mt-1 font-display text-3xl font-bold" style={{ color: '#18130F' }}>{quiz.title}</h1><p className="mt-2" style={{ color: '#6E6153' }}>See every student's submitted result.</p></div>
+      <Link to={`/class/${quiz.classroom_id}`} className="mb-5 inline-flex items-center gap-2 text-sm font-medium" style={{ color: '#555a6a' }}><ArrowLeft size={16} />Back to classroom</Link>
+      <div className="mb-7"><p className="eyebrow">Quiz results</p><h1 className="mt-1 font-display text-3xl font-medium" style={{ color: '#1c1c1e' }}>{quiz.title}</h1><p className="mt-2" style={{ color: '#555a6a' }}>See every student's submitted result.</p></div>
       <div className="mb-6 grid gap-4 sm:grid-cols-3">
         <StatCard index={1} label="Submissions" value={attempts.length} icon={<Users size={21} />} />
         <StatCard index={2} label="Class average" value={`${average}%`} icon={<BarChart3 size={21} />} />
@@ -54,7 +54,7 @@ export function QuizResultsPage() {
       </div>
       <div className="card overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[700px] text-left text-sm"><thead style={{ background: '#EDE1C7' }}><tr className="text-[12px] font-bold uppercase tracking-[0.06em]" style={{ color: '#6E6153' }}><th className="px-5 py-3.5">Student</th><th className="px-5 py-3.5">Email</th><th className="px-5 py-3.5">Score</th><th className="px-5 py-3.5">Percentage</th><th className="px-5 py-3.5">Submitted</th></tr></thead><tbody style={{ divideColor: '#E4DBCB' }} className="divide-y">{attempts.length === 0 ? <tr><td colSpan={5} className="px-5 py-12 text-center" style={{ color: '#6E6153' }}>No student has submitted this quiz yet.</td></tr> : attempts.map((attempt) => { const profile = Array.isArray(attempt.profiles) ? attempt.profiles[0] : attempt.profiles; const pct = attempt.total_marks ? Math.round(attempt.score / attempt.total_marks * 100) : 0; return <tr key={attempt.id} className="transition hover:bg-black/[0.02]"><td className="px-5 py-4 font-bold" style={{ color: '#18130F' }}>{profile?.full_name ?? 'Student'}</td><td className="px-5 py-4" style={{ color: '#6E6153' }}>{profile?.email ?? '—'}</td><td className="px-5 py-4 font-bold" style={{ color: '#18130F' }}>{attempt.score}/{attempt.total_marks}</td><td className="px-5 py-4"><span className="pill" style={{ background: '#EDE1C7', color: '#18130F' }}>{pct}%</span></td><td className="px-5 py-4" style={{ color: '#6E6153' }}>{new Date(attempt.submitted_at).toLocaleString()}</td></tr> })}</tbody></table>
+          <table className="w-full min-w-[700px] text-left text-sm"><thead style={{ background: '#f7f8fa' }}><tr className="text-[11px] font-semibold uppercase tracking-[0.05em]" style={{ color: '#6b6f7e' }}><th className="px-5 py-3.5">Student</th><th className="px-5 py-3.5">Email</th><th className="px-5 py-3.5">Score</th><th className="px-5 py-3.5">Percentage</th><th className="px-5 py-3.5">Submitted</th></tr></thead><tbody className="divide-y divide-[#eef0f3]">{attempts.length === 0 ? <tr><td colSpan={5} className="px-5 py-12 text-center" style={{ color: '#555a6a' }}>No student has submitted this quiz yet.</td></tr> : attempts.map((attempt) => { const profile = Array.isArray(attempt.profiles) ? attempt.profiles[0] : attempt.profiles; const pct = attempt.total_marks ? Math.round(attempt.score / attempt.total_marks * 100) : 0; return <tr key={attempt.id} className="transition hover:bg-black/[0.02]"><td className="px-5 py-4 font-medium" style={{ color: '#1c1c1e' }}>{profile?.full_name ?? 'Student'}</td><td className="px-5 py-4" style={{ color: '#555a6a' }}>{profile?.email ?? '—'}</td><td className="px-5 py-4 font-medium" style={{ color: '#1c1c1e' }}>{attempt.score}/{attempt.total_marks}</td><td className="px-5 py-4"><span className="pill pill-yellow">{pct}%</span></td><td className="px-5 py-4" style={{ color: '#555a6a' }}>{new Date(attempt.submitted_at).toLocaleString()}</td></tr> })}</tbody></table>
         </div>
       </div>
     </div>

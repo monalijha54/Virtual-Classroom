@@ -46,16 +46,16 @@ export function AnnouncementsTab({ classroomId }: { classroomId: string }) {
 
       {items.length === 0 ? (
         <div className="card p-10 text-center">
-          <Megaphone className="mx-auto" size={28} style={{ color: '#A2907A' }} />
-          <h3 className="mt-3 font-display font-bold" style={{ color: '#18130F' }}>No announcements yet</h3>
-          <p className="mt-1 text-sm" style={{ color: '#6E6153' }}>Class updates will appear here.</p>
+          <Megaphone className="mx-auto" size={28} style={{ color: '#8e91a0' }} />
+          <h3 className="mt-3 font-display font-medium" style={{ color: '#1c1c1e' }}>No announcements yet</h3>
+          <p className="mt-1 text-sm" style={{ color: '#555a6a' }}>Class updates will appear here.</p>
         </div>
       ) : items.map((item) => (
         <div key={item.id} className="card p-5">
           <div className="flex gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px]" style={{ background: '#EDE1C7', color: '#18130F' }}><Megaphone size={18} /></div>
-            <div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-sm leading-6" style={{ color: '#2B241E' }}>{item.message}</p><p className="mt-2 text-xs" style={{ color: '#A79C8C' }}>{new Date(item.created_at).toLocaleString()}</p></div>
-            {profile?.role === 'teacher' && <button onClick={() => remove(item.id)} className="h-fit rounded-full p-2 transition hover:bg-black/5" style={{ color: '#A79C8C' }} aria-label="Delete"><Trash2 size={16} /></button>}
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px]" style={{ background: '#fff4c4', color: '#1c1c1e' }}><Megaphone size={18} /></div>
+            <div className="min-w-0 flex-1"><p className="whitespace-pre-wrap text-sm leading-6" style={{ color: '#2c2c34' }}>{item.message}</p><p className="mt-2 text-xs" style={{ color: '#a5a8b5' }}>{new Date(item.created_at).toLocaleString()}</p></div>
+            {profile?.role === 'teacher' && <button onClick={() => remove(item.id)} className="h-fit rounded-full p-2 transition hover:bg-black/5" style={{ color: '#a5a8b5' }} aria-label="Delete"><Trash2 size={16} /></button>}
           </div>
         </div>
       ))}

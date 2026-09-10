@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
         <Toaster
           position="top-right"
           toastOptions={{
-            style: { background: '#FFFFFF', color: '#18130F', borderRadius: 12, fontWeight: 600, fontSize: 14, border: '1px solid #E4DBCB' },
+            style: { background: '#FFFFFF', color: '#1c1c1e', borderRadius: 12, fontWeight: 500, fontSize: 14, border: '1px solid #eef0f3' },
           }}
         />
       </AuthProvider>

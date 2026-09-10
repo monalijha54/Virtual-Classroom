@@ -42,20 +42,20 @@ export function AuthPage({ role }: { role: UserRole }) {
     }
 
     return (
-      <div className="flex min-h-screen items-center justify-center p-5" style={{ background: '#FAF6ED' }}>
-        <div className="w-full max-w-md border bg-white p-7 sm:p-8" style={{ borderRadius: 20, borderColor: '#E4DBCB' }}>
-          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full" style={{ background: '#EDE1C7', color: '#18130F' }}>
+      <div className="flex min-h-screen items-center justify-center p-5" style={{ background: '#fafbfc' }}>
+        <div className="w-full max-w-md border bg-white p-7 sm:p-8" style={{ borderRadius: 16, borderColor: '#eef0f3' }}>
+          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-[12px]" style={{ background: '#ffd02f', color: '#1c1c1e' }}>
             <KeyRound size={24} />
           </div>
           <p className="eyebrow mb-2">Teacher portal</p>
-          <h1 className="h-section text-2xl" style={{ color: '#18130F' }}>Activate teacher access</h1>
-          <p className="mt-2 text-sm leading-6" style={{ color: '#6E6153' }}>
+          <h1 className="h-section text-2xl" style={{ color: '#1c1c1e' }}>Activate teacher access</h1>
+          <p className="mt-2 text-sm leading-6" style={{ color: '#555a6a' }}>
             This account currently has the default student role. Enter the teacher access code once to upgrade it.
           </p>
 
-          <div className="mt-5 rounded-[12px] p-4 text-sm" style={{ background: '#EDE1C7' }}>
-            <div className="font-semibold" style={{ color: '#18130F' }}>Signed in as {profile.full_name}</div>
-            <div className="mt-1" style={{ color: '#6E6153' }}>{profile.email}</div>
+          <div className="mt-5 rounded-[12px] p-4 text-sm" style={{ background: '#fff8e0', border: '1px solid #eef0f3' }}>
+            <div className="font-medium" style={{ color: '#1c1c1e' }}>Signed in as {profile.full_name}</div>
+            <div className="mt-1" style={{ color: '#555a6a' }}>{profile.email}</div>
           </div>
 
           <form onSubmit={handleTeacherActivation} className="mt-6 space-y-4">
@@ -81,8 +81,8 @@ export function AuthPage({ role }: { role: UserRole }) {
               await signOut()
               setTeacherCode('')
             }}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition hover:bg-black/5"
-            style={{ color: '#6E6153' }}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition hover:bg-black/5"
+            style={{ color: '#555a6a' }}
           >
             <LogOut size={16} /> Sign out and use another account
           </button>
@@ -125,36 +125,41 @@ export function AuthPage({ role }: { role: UserRole }) {
   }
 
   return (
-    <div className="grid min-h-screen lg:grid-cols-2" style={{ background: '#FAF6ED' }}>
-      <section className="relative hidden overflow-hidden p-12 lg:flex lg:flex-col lg:justify-between" style={{ background: '#211C17', color: '#F5EFE4' }}>
+    <div className="grid min-h-screen bg-white lg:grid-cols-2">
+      <section className="board-dots relative hidden overflow-hidden p-12 lg:flex lg:flex-col lg:justify-between" style={{ background: '#1c1c1e', color: '#ffffff' }}>
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full font-display text-sm font-extrabold" style={{ background: '#EDE1C7', color: '#18130F' }}>RL</div>
-          <div><div className="font-display text-lg font-extrabold">RuralLearn</div><div className="text-xs" style={{ color: '#B7ACA0' }}>Learn anywhere, grow everywhere</div></div>
+          <div className="flex h-11 w-11 items-center justify-center rounded-[8px] font-display text-sm font-semibold" style={{ background: '#ffd02f', color: '#1c1c1e' }}>RL</div>
+          <div><div className="font-display text-lg font-medium">RuralLearn</div><div className="text-xs" style={{ color: '#a5a8b5' }}>Learn anywhere, grow everywhere</div></div>
         </Link>
         <div className="max-w-lg">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold" style={{ borderColor: 'rgba(245,239,228,0.2)', color: '#F5EFE4' }}>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium" style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#ffffff', background: 'rgba(255,255,255,0.06)' }}>
             {isTeacher ? <School size={15} /> : <GraduationCap size={15} />}
             {isTeacher ? 'Teacher Portal' : 'Student Portal'}
           </div>
-          <h1 className="mt-2 font-display text-4xl font-bold">Learn anywhere, grow everywhere.</h1>
-          <p className="mt-5 text-lg leading-8" style={{ color: '#B7ACA0' }}>Simple online classes, notes, quizzes and live lessons — built for rural learners.</p>
+          <h1 className="mt-2 font-display text-4xl font-medium">Learn anywhere, grow everywhere.</h1>
+          <p className="mt-5 text-lg leading-8" style={{ color: '#a5a8b5' }}>Simple online classes, notes, quizzes and live lessons — built for rural learners.</p>
+          <div className="mt-8 grid grid-cols-3 gap-3">
+            <div className="rounded-[16px] p-4 text-sm font-medium" style={{ background: '#ffd02f', color: '#1c1c1e' }}>Classes</div>
+            <div className="rounded-[16px] p-4 text-sm font-medium" style={{ background: '#fde0f0', color: '#1c1c1e' }}>Notes</div>
+            <div className="rounded-[16px] p-4 text-sm font-medium" style={{ background: '#c3faf5', color: '#1c1c1e' }}>Quizzes</div>
+          </div>
         </div>
-        <div className="flex items-center gap-2 text-sm" style={{ color: '#B7ACA0' }}><ShieldCheck size={17} /> Role-based secure access</div>
+        <div className="flex items-center gap-2 text-sm" style={{ color: '#a5a8b5' }}><ShieldCheck size={17} /> Role-based secure access</div>
       </section>
 
-      <section className="flex items-center justify-center p-5 sm:p-8">
+      <section className="flex items-center justify-center bg-white p-5 sm:p-8">
         <div className="w-full max-w-md">
           <div className="mb-8 flex items-center gap-3 lg:hidden">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full font-display font-extrabold" style={{ background: '#18130F', color: '#FAF6ED' }}>RL</div>
-            <div className="font-display font-extrabold">RuralLearn</div>
+            <div className="flex h-10 w-10 items-center justify-center rounded-[8px] font-display font-semibold" style={{ background: '#ffd02f', color: '#1c1c1e' }}>RL</div>
+            <div className="font-display font-medium">RuralLearn</div>
           </div>
           <div className="mb-7">
             <p className="eyebrow mb-2">{isTeacher ? 'Teacher portal' : 'Student portal'}</p>
-            <h2 className="mt-2 font-display text-3xl font-bold" style={{ color: '#18130F' }}>{mode === 'login' ? 'Welcome back' : 'Create your account'}</h2>
-            <p className="mt-2" style={{ color: '#6E6153' }}>{mode === 'login' ? 'Sign in to continue to your classroom.' : `Register as a ${role}.`}</p>
+            <h2 className="mt-2 font-display text-3xl font-medium" style={{ color: '#1c1c1e' }}>{mode === 'login' ? 'Welcome back' : 'Create your account'}</h2>
+            <p className="mt-2" style={{ color: '#555a6a' }}>{mode === 'login' ? 'Sign in to continue to your classroom.' : `Register as a ${role}.`}</p>
           </div>
 
-          <div className="border p-6 sm:p-7" style={{ background: '#EDE1C7', borderColor: '#E4DBCB', borderRadius: 20 }}>
+          <div className="border bg-white p-6 sm:p-7" style={{ borderColor: '#eef0f3', borderRadius: 16, boxShadow: 'rgba(5, 0, 56, 0.06) 0px 4px 12px 0px' }}>
             <form onSubmit={handleSubmit} className="space-y-4">
               {mode === 'signup' && (
                 <div><label className="label">Full name</label><input className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" required /></div>
@@ -163,23 +168,23 @@ export function AuthPage({ role }: { role: UserRole }) {
               <div><label className="label">Password</label><input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} minLength={6} placeholder="Minimum 6 characters" required /></div>
               {isTeacher && (
                 <div>
-                  <label className="label">Teacher access code {mode === 'login' && <span className="font-medium normal-case tracking-normal" style={{ color: '#A79C8C' }}>(required if this account is still marked student)</span>}</label>
+                  <label className="label">Teacher access code {mode === 'login' && <span className="font-medium normal-case tracking-normal" style={{ color: '#a5a8b5' }}>(required if this account is still marked student)</span>}</label>
                   <input className="input" value={teacherCode} onChange={(e) => setTeacherCode(e.target.value)} placeholder="College-provided code" required={mode === 'signup'} />
                 </div>
               )}
               <button className="btn-primary w-full" disabled={busy}>{busy ? 'Please wait…' : mode === 'login' ? 'Sign in' : 'Create account'} <ArrowRight size={17} /></button>
             </form>
 
-            <div className="mt-6 text-center text-sm" style={{ color: '#6E6153' }}>
+            <div className="mt-6 text-center text-sm" style={{ color: '#555a6a' }}>
               {mode === 'login' ? "Don't have an account?" : 'Already have an account?'}{' '}
-              <button className="font-bold underline" style={{ color: '#18130F' }} onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}>
+              <button className="font-semibold underline" style={{ color: '#1c1c1e' }} onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}>
                 {mode === 'login' ? 'Create one' : 'Sign in'}
               </button>
             </div>
           </div>
-          <div className="mt-6 border-t pt-5 text-center text-sm" style={{ borderColor: '#E4DBCB', color: '#6E6153' }}>
+          <div className="mt-6 border-t pt-5 text-center text-sm" style={{ borderColor: '#eef0f3', color: '#555a6a' }}>
             {isTeacher ? 'Are you a student?' : 'Are you a teacher?'}{' '}
-            <Link className="font-bold underline" style={{ color: '#18130F' }} to={isTeacher ? '/student/login' : '/teacher/login'}>
+            <Link className="font-semibold underline" style={{ color: '#1c1c1e' }} to={isTeacher ? '/student/login' : '/teacher/login'}>
               Open {isTeacher ? 'student' : 'teacher'} portal
             </Link>
           </div>

@@ -47,15 +47,15 @@ export function ClassesPage() {
   return (
     <div>
       <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div><p className="eyebrow">Classrooms</p><h1 className="mt-1 font-display text-3xl font-bold" style={{ color: '#18130F' }}>My Classes</h1><p className="mt-2" style={{ color: '#6E6153' }}>{profile.role === 'teacher' ? 'Create and manage your teaching spaces.' : 'Join and access your learning spaces.'}</p></div>
+        <div><p className="eyebrow">Classrooms</p><h1 className="mt-1 font-display text-3xl font-medium" style={{ color: '#1c1c1e' }}>My Classes</h1><p className="mt-2" style={{ color: '#555a6a' }}>{profile.role === 'teacher' ? 'Create and manage your teaching spaces.' : 'Join and access your learning spaces.'}</p></div>
         <button className="btn-primary" onClick={() => profile.role === 'teacher' ? setShowCreate(true) : setShowJoin(true)}>{profile.role === 'teacher' ? <Plus size={17} /> : <LogIn size={17} />}{profile.role === 'teacher' ? 'Create classroom' : 'Join classroom'}</button>
       </div>
 
-      <div className="relative mb-5 max-w-md"><Search size={17} aria-hidden className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" style={{ color: '#A79C8C' }} /><input className="input input-has-left-icon" placeholder="Search classes…" value={search} onChange={(e) => setSearch(e.target.value)} /></div>
+      <div className="relative mb-5 max-w-md"><Search size={17} aria-hidden className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" style={{ color: '#a5a8b5' }} /><input className="input input-has-left-icon" placeholder="Search classes…" value={search} onChange={(e) => setSearch(e.target.value)} /></div>
 
-      {loading ? <div className="py-16 text-center" style={{ color: '#6E6153' }}>Loading classrooms…</div> : (
+      {loading ? <div className="py-16 text-center" style={{ color: '#555a6a' }}>Loading classrooms…</div> : (
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {filtered.length === 0 && <div className="card-warm col-span-full p-12 text-center" style={{ color: '#6E6153' }}>No classrooms found.</div>}
+          {filtered.length === 0 && <div className="card-warm col-span-full p-12 text-center" style={{ color: '#555a6a' }}>No classrooms found.</div>}
           {filtered.map((classroom, i) => (
             <ClassroomCard key={classroom.id} classroom={classroom} index={i} />
           ))}
@@ -93,5 +93,5 @@ export function JoinClassModal({ onClose, onJoined }: { onClose: () => void; onJ
     if (error) return toast.error(error.message)
     toast.success('Joined classroom'); onJoined(); onClose()
   }
-  return <Modal title="Join classroom" onClose={onClose}><form onSubmit={submit}><p className="mb-4 text-sm" style={{ color: '#6E6153' }}>Enter the 6-character code shared by your teacher.</p><label className="label">Class code</label><div className="relative"><input className="input input-has-right-icon font-mono uppercase tracking-widest" maxLength={6} value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="ABC123" required /><Copy size={16} aria-hidden className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" style={{ color: '#A79C8C' }} /></div><button className="btn-primary mt-5 w-full" disabled={busy}>{busy ? 'Joining…' : 'Join classroom'}</button></form></Modal>
+  return <Modal title="Join classroom" onClose={onClose}><form onSubmit={submit}><p className="mb-4 text-sm" style={{ color: '#555a6a' }}>Enter the 6-character code shared by your teacher.</p><label className="label">Class code</label><div className="relative"><input className="input input-has-right-icon font-mono uppercase tracking-widest" maxLength={6} value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="ABC123" required /><Copy size={16} aria-hidden className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" style={{ color: '#a5a8b5' }} /></div><button className="btn-primary mt-5 w-full" disabled={busy}>{busy ? 'Joining…' : 'Join classroom'}</button></form></Modal>
 }

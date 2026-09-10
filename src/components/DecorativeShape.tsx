@@ -1,6 +1,6 @@
 type ShapeKind = 'sunburst' | 'circle' | 'triangle' | 'squiggle' | 'capsule'
 
-const PALETTE = ['#F2C230', '#F23DAE', '#CBDA2E', '#6478E0', '#C7B79C'] as const
+const PALETTE = ['#ffd02f', '#ffd8f4', '#c3faf5', '#4262ff', '#ffc6c6', '#fff4c4'] as const
 
 export function accentFor(index: number): string {
   return PALETTE[index % PALETTE.length]
@@ -53,12 +53,12 @@ export function DecorativeShape({
 
 export function ShapeCluster({ className = '' }: { className?: string }) {
   return (
-    <div aria-hidden className={`pointer-events-none flex items-end gap-3 ${className}`}>
-      <DecorativeShape kind="sunburst" color="#F2C230" size={44} rotate={-8} />
-      <DecorativeShape kind="triangle" color="#3B332C" size={30} rotate={6} />
-      <DecorativeShape kind="circle" color="#CBDA2E" size={30} />
-      <DecorativeShape kind="capsule" color="#6478E0" size={22} rotate={-12} />
-      <DecorativeShape kind="sunburst" color="#F5EFE4" size={26} rotate={14} />
+    <div aria-hidden className={`board-dots pointer-events-none flex items-end gap-3 rounded-[16px] px-4 py-3 ${className}`} style={{ backgroundColor: '#f7f8fa', border: '1px solid #eef0f3' }}>
+      <DecorativeShape kind="sunburst" color="#ffd02f" size={44} rotate={-8} />
+      <DecorativeShape kind="triangle" color="#1c1c1e" size={30} rotate={6} />
+      <DecorativeShape kind="circle" color="#0fbcb0" size={30} />
+      <DecorativeShape kind="capsule" color="#4262ff" size={22} rotate={-12} />
+      <DecorativeShape kind="sunburst" color="#ffd8f4" size={26} rotate={14} />
     </div>
   )
 }

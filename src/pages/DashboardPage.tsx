@@ -66,8 +66,8 @@ export function DashboardPage() {
     <div>
       <div className="mb-8">
         <p className="eyebrow">{isTeacher ? 'Teacher dashboard' : 'Student dashboard'}</p>
-        <h1 className="mt-2 font-display text-3xl font-bold" style={{ color: '#18130F' }}>Welcome, {profile.full_name.split(' ')[0]}</h1>
-        <p className="mt-2" style={{ color: '#6E6153' }}>{isTeacher ? 'Manage your classes and student learning.' : 'Continue learning from your classrooms.'}</p>
+        <h1 className="mt-2 font-display text-3xl font-medium" style={{ color: '#1c1c1e' }}>Welcome, {profile.full_name.split(' ')[0]}</h1>
+        <p className="mt-2" style={{ color: '#555a6a' }}>{isTeacher ? 'Manage your classes and student learning.' : 'Continue learning from your classrooms.'}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
@@ -77,7 +77,7 @@ export function DashboardPage() {
       </div>
 
       <div className="mt-10 flex flex-wrap items-end justify-between gap-3">
-        <div><h2 className="font-display text-xl font-bold" style={{ color: '#18130F' }}>My Classes</h2><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>Your recent classrooms <span className="ml-1 rounded-full px-2 py-0.5 text-xs font-bold" style={{ background: '#EDE1C7', color: '#18130F' }}>{classes.length}</span></p></div>
+        <div><h2 className="font-display text-xl font-medium" style={{ color: '#1c1c1e' }}>My Classes</h2><p className="mt-1 text-sm" style={{ color: '#555a6a' }}>Your recent classrooms <span className="pill pill-yellow ml-1">{classes.length}</span></p></div>
         <div className="flex flex-wrap gap-2">
           <Link to={`/${profile.role}/classes`} className="btn-secondary">View all <ArrowRight size={16} /></Link>
           {isTeacher ? (
@@ -91,9 +91,9 @@ export function DashboardPage() {
       <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {!loading && classes.length === 0 && (
           <div className="card-warm col-span-full p-10 text-center">
-            <School className="mx-auto" size={36} style={{ color: '#A2907A' }} />
-            <h3 className="mt-4 font-display font-bold" style={{ color: '#18130F' }}>No classrooms yet</h3>
-            <p className="mt-1 text-sm" style={{ color: '#6E6153' }}>{isTeacher ? 'Create your first classroom to get started.' : 'Join a classroom using the code given by your teacher.'}</p>
+            <School className="mx-auto" size={36} style={{ color: '#8e91a0' }} />
+            <h3 className="mt-4 font-display font-medium" style={{ color: '#1c1c1e' }}>No classrooms yet</h3>
+            <p className="mt-1 text-sm" style={{ color: '#555a6a' }}>{isTeacher ? 'Create your first classroom to get started.' : 'Join a classroom using the code given by your teacher.'}</p>
             <div className="mt-5 flex justify-center">
               {isTeacher ? (
                 <button className="btn-primary" onClick={() => setShowCreate(true)}><Plus size={17} />New classroom</button>

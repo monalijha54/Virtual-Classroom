@@ -56,25 +56,26 @@ export function QuizzesTab({ classroomId }: { classroomId: string }) {
     <div>
       {profile.role === 'teacher' && <div className="mb-4 flex justify-end"><button className="btn-primary" onClick={() => setShowCreate(true)}><Plus size={17} />Create quiz</button></div>}
       <div className="space-y-3">
-        {quizzes.length === 0 && <div className="card p-10 text-center"><ClipboardList className="mx-auto" size={30} style={{ color: '#A2907A' }} /><h3 className="mt-3 font-display font-bold" style={{ color: '#18130F' }}>No quizzes yet</h3><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>{profile.role === 'teacher' ? 'Create an MCQ quiz for your students.' : 'Published quizzes will appear here.'}</p></div>}
+        {quizzes.length === 0 && <div className="card p-10 text-center"><ClipboardList className="mx-auto" size={30} style={{ color: '#8e91a0' }} /><h3 className="mt-3 font-display font-medium" style={{ color: '#1c1c1e' }}>No quizzes yet</h3><p className="mt-1 text-sm" style={{ color: '#555a6a' }}>{profile.role === 'teacher' ? 'Create an MCQ quiz for your students.' : 'Published quizzes will appear here.'}</p></div>}
         {quizzes.map((quiz, qi) => {
           const attempt = attempts.find((a) => a.quiz_id === quiz.id)
           const percentage = attempt && attempt.total_marks ? Math.round((attempt.score / attempt.total_marks) * 100) : 0
+          const tint = ['#fff4c4', '#fde0f0', '#c3faf5', '#f5f3ff'][qi % 4]
           return (
             <div key={quiz.id} className="card p-5">
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div className="flex min-w-0 flex-1 items-start gap-3">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px]" style={{ background: '#EDE1C7', color: '#18130F' }}>
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px]" style={{ background: tint, color: '#1c1c1e' }}>
                     <ClipboardList size={20} />
                   </div>
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-display font-bold" style={{ color: '#18130F' }}>{quiz.title}</h3>
-                      {profile.role === 'teacher' && <span className="pill" style={{ background: '#EDE1C7', color: '#18130F' }}>{quiz.published ? 'Published' : 'Draft'}</span>}
-                      {attempt && <span className="pill" style={{ background: '#EDE1C7', color: '#18130F' }}>Completed</span>}
+                      <h3 className="font-display font-medium" style={{ color: '#1c1c1e' }}>{quiz.title}</h3>
+                      {profile.role === 'teacher' && <span className="pill pill-purple">{quiz.published ? 'Published' : 'Draft'}</span>}
+                      {attempt && <span className="pill pill-teal">Completed</span>}
                     </div>
-                    <p className="mt-1 text-sm" style={{ color: '#6E6153' }}>{quiz.description || 'MCQ quiz'} • {quiz.duration_minutes} min</p>
-                    {attempt && <p className="mt-1 text-sm font-bold" style={{ color: '#18130F' }}>Your result: {attempt.score}/{attempt.total_marks} ({percentage}%)</p>}
+                    <p className="mt-1 text-sm" style={{ color: '#555a6a' }}>{quiz.description || 'MCQ quiz'} • {quiz.duration_minutes} min</p>
+                    {attempt && <p className="mt-1 text-sm font-medium" style={{ color: '#1c1c1e' }}>Your result: {attempt.score}/{attempt.total_marks} ({percentage}%)</p>}
                   </div>
                 </div>
                 {profile.role === 'teacher' ? (
@@ -84,7 +85,7 @@ export function QuizzesTab({ classroomId }: { classroomId: string }) {
                     <button className="btn-danger" onClick={() => remove(quiz)}><Trash2 size={16} /></button>
                   </div>
                 ) : attempt ? (
-                  <div className="flex items-center gap-2 font-bold" style={{ color: '#3f6212' }}><CheckCircle2 size={18} />Submitted</div>
+                  <div className="flex items-center gap-2 font-medium" style={{ color: '#187574' }}><CheckCircle2 size={18} />Submitted</div>
                 ) : (
                   <Link className="btn-primary" to={`/quiz/${quiz.id}`}>Start quiz</Link>
                 )}
@@ -137,17 +138,17 @@ function CreateQuizModal({ classroomId, teacherId, onClose, onCreated }: { class
         <div><label className="label">Description</label><textarea className="input min-h-20" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Optional instructions" /></div>
         <div className="space-y-4">
           {questions.map((q, index) => (
-            <div key={index} className="rounded-[20px] border p-4" style={{ background: '#EDE1C7', borderColor: '#E4DBCB' }}>
-              <div className="mb-3 flex items-center justify-between"><h3 className="font-display font-bold" style={{ color: '#18130F' }}>Question {index + 1}</h3>{questions.length > 1 && <button type="button" className="rounded-full p-2 transition hover:bg-black/5" style={{ color: '#A79C8C' }} onClick={() => setQuestions((old) => old.filter((_, i) => i !== index))}><Trash2 size={16} /></button>}</div>
+            <div key={index} className="rounded-[16px] border p-4" style={{ background: '#fff8e0', borderColor: '#eef0f3' }}>
+              <div className="mb-3 flex items-center justify-between"><h3 className="font-display font-medium" style={{ color: '#1c1c1e' }}>Question {index + 1}</h3>{questions.length > 1 && <button type="button" className="rounded-full p-2 transition hover:bg-black/5" style={{ color: '#a5a8b5' }} onClick={() => setQuestions((old) => old.filter((_, i) => i !== index))}><Trash2 size={16} /></button>}</div>
               <textarea className="input min-h-20 bg-white" value={q.question_text} onChange={(e) => updateQuestion(index, 'question_text', e.target.value)} placeholder="Enter the question" required />
-              <div className="mt-3 grid gap-2 sm:grid-cols-2">{(['a','b','c','d'] as const).map((letter) => <div key={letter} className="flex items-center gap-2"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-xs font-extrabold" style={{ color: '#6E6153', border: '1px solid #E4DBCB' }}>{letter.toUpperCase()}</span><input className="input bg-white" value={q[`option_${letter}`]} onChange={(e) => updateQuestion(index, `option_${letter}`, e.target.value)} placeholder={`Option ${letter.toUpperCase()}`} required /></div>)}</div>
+              <div className="mt-3 grid gap-2 sm:grid-cols-2">{(['a','b','c','d'] as const).map((letter) => <div key={letter} className="flex items-center gap-2"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-xs font-semibold" style={{ color: '#6b6f7e', border: '1px solid #e0e2e8' }}>{letter.toUpperCase()}</span><input className="input bg-white" value={q[`option_${letter}`]} onChange={(e) => updateQuestion(index, `option_${letter}`, e.target.value)} placeholder={`Option ${letter.toUpperCase()}`} required /></div>)}</div>
               <div className="mt-3 grid gap-3 sm:grid-cols-2"><div><label className="label">Correct answer</label><select className="input bg-white" value={q.correct_option} onChange={(e) => updateQuestion(index, 'correct_option', e.target.value)}><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select></div><div><label className="label">Marks</label><input className="input bg-white" type="number" min={1} max={100} value={q.marks} onChange={(e) => updateQuestion(index, 'marks', Number(e.target.value))} /></div></div>
             </div>
           ))}
         </div>
         <button type="button" className="btn-secondary" onClick={() => setQuestions((old) => [...old, emptyQuestion()])}><Plus size={16} />Add question</button>
-        <label className="flex items-center gap-3 rounded-[12px] border p-3 text-sm" style={{ borderColor: '#E4DBCB', color: '#2B241E' }}><input type="checkbox" checked={publishNow} onChange={(e) => setPublishNow(e.target.checked)} className="h-4 w-4 accent-[#18130F]" />Publish immediately so students can attempt it</label>
-        <div className="flex justify-end gap-2 border-t pt-4" style={{ borderColor: '#E4DBCB' }}><button type="button" className="btn-secondary" onClick={onClose}>Cancel</button><button className="btn-primary" disabled={busy}>{busy ? 'Creating…' : 'Create quiz'}</button></div>
+        <label className="flex items-center gap-3 rounded-[12px] border p-3 text-sm" style={{ borderColor: '#e0e2e8', color: '#2c2c34' }}><input type="checkbox" checked={publishNow} onChange={(e) => setPublishNow(e.target.checked)} className="h-4 w-4 accent-[#4262ff]" />Publish immediately so students can attempt it</label>
+        <div className="flex justify-end gap-2 border-t pt-4" style={{ borderColor: '#eef0f3' }}><button type="button" className="btn-secondary" onClick={onClose}>Cancel</button><button className="btn-primary" disabled={busy}>{busy ? 'Creating…' : 'Create quiz'}</button></div>
       </form>
     </Modal>
   )
