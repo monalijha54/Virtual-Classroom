@@ -3,15 +3,15 @@ import { X } from 'lucide-react'
 
 export function Modal({ title, children, onClose, wide = false }: { title: string; children: ReactNode; onClose: () => void; wide?: boolean }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-4" onMouseDown={onClose}>
-      <div className={`max-h-[90vh] w-full overflow-y-auto rounded-2xl bg-white shadow-2xl ${wide ? 'max-w-3xl' : 'max-w-lg'}`} onMouseDown={(e) => e.stopPropagation()}>
-        <div className="sticky top-0 flex items-center justify-between border-b border-slate-200 bg-white px-5 py-4">
-          <h2 className="text-lg font-bold text-slate-900">{title}</h2>
-          <button onClick={onClose} className="rounded-lg p-2 text-slate-500 hover:bg-slate-100" aria-label="Close">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(24,19,15,0.5)' }} onMouseDown={onClose}>
+      <div className={`max-h-[90vh] w-full overflow-y-auto bg-white ${wide ? 'max-w-3xl' : 'max-w-lg'}`} style={{ borderRadius: 32, boxShadow: '0 24px 64px rgba(24,19,15,0.28)' }} onMouseDown={(e) => e.stopPropagation()}>
+        <div className="sticky top-0 flex items-center justify-between bg-white px-6 py-4" style={{ borderBottom: '1px solid #E4DBCB' }}>
+          <h2 className="font-display text-lg font-extrabold" style={{ color: '#18130F' }}>{title}</h2>
+          <button onClick={onClose} className="rounded-full p-2 transition hover:bg-black/5" style={{ color: '#6E6153' }} aria-label="Close">
             <X size={18} />
           </button>
         </div>
-        <div className="p-5">{children}</div>
+        <div className="p-6">{children}</div>
       </div>
     </div>
   )

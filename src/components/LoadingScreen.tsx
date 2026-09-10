@@ -1,8 +1,10 @@
+import { DecorativeShape } from './DecorativeShape'
+
 export function LoadingScreen() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50">
-      <div className="flex items-center gap-3 text-slate-600">
-        <div className="h-5 w-5 animate-spin rounded-full border-2 border-slate-300 border-t-indigo-600" />
+    <div className="flex min-h-screen items-center justify-center" style={{ background: '#FAF6ED' }}>
+      <div className="flex items-center gap-3 font-semibold" style={{ color: '#6E6153' }}>
+        <span className="inline-block animate-spin"><DecorativeShape kind="sunburst" color="#F2C230" size={28} /></span>
         Loading…
       </div>
     </div>

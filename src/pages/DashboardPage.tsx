@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/supabase'
 import type { Classroom } from '../lib/types'
+import { StatCard } from '../components/BrandBits'
+import { accentFor } from '../components/DecorativeShape'
 
 export function DashboardPage() {
   const { profile } = useAuth()
@@ -48,55 +50,53 @@ export function DashboardPage() {
   const isTeacher = profile.role === 'teacher'
   const stats = isTeacher
     ? [
-        { label: 'Classes', value: classes.length, icon: School },
-        { label: 'Students', value: studentCount, icon: Users },
-        { label: 'Quizzes', value: quizCount, icon: ClipboardCheck },
+        { label: 'Classes', value: classes.length, icon: <School size={21} /> },
+        { label: 'Students', value: studentCount, icon: <Users size={21} /> },
+        { label: 'Quizzes', value: quizCount, icon: <ClipboardCheck size={21} /> },
       ]
     : [
-        { label: 'Joined classes', value: classes.length, icon: School },
-        { label: 'Available quizzes', value: quizCount, icon: ClipboardCheck },
-        { label: 'Learning space', value: 'Active', icon: BookOpen },
+        { label: 'Joined classes', value: classes.length, icon: <School size={21} /> },
+        { label: 'Available quizzes', value: quizCount, icon: <ClipboardCheck size={21} /> },
+        { label: 'Learning space', value: 'Active', icon: <BookOpen size={21} /> },
       ]
 
   return (
     <div>
       <div className="mb-8">
-        <p className="text-sm font-medium text-indigo-600">{isTeacher ? 'Teacher dashboard' : 'Student dashboard'}</p>
-        <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900">Welcome, {profile.full_name.split(' ')[0]}</h1>
-        <p className="mt-2 text-slate-500">{isTeacher ? 'Manage your classes and student learning.' : 'Continue learning from your classrooms.'}</p>
+        <p className="eyebrow">{isTeacher ? 'Teacher dashboard' : 'Student dashboard'}</p>
+        <h1 className="h-display mt-2 text-4xl sm:text-5xl" style={{ color: '#18130F' }}>Welcome, {profile.full_name.split(' ')[0]}</h1>
+        <p className="mt-2" style={{ color: '#6E6153' }}>{isTeacher ? 'Manage your classes and student learning.' : 'Continue learning from your classrooms.'}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        {stats.map(({ label, value, icon: Icon }) => (
-          <div key={label} className="card p-5">
-            <div className="flex items-center justify-between">
-              <div><p className="text-sm text-slate-500">{label}</p><p className="mt-2 text-2xl font-bold text-slate-900">{loading ? '—' : value}</p></div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"><Icon size={21} /></div>
-            </div>
-          </div>
+        {stats.map(({ label, value, icon }, i) => (
+          <StatCard key={label} index={i} label={label} value={loading ? '—' : value} icon={icon} />
         ))}
       </div>
 
-      <div className="mt-8 flex items-center justify-between">
-        <div><h2 className="text-xl font-bold text-slate-900">My Classes</h2><p className="mt-1 text-sm text-slate-500">Your recent classrooms</p></div>
+      <div className="mt-10 flex items-center justify-between">
+        <div><h2 className="h-section text-2xl" style={{ color: '#18130F' }}>My Classes</h2><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>Your recent classrooms</p></div>
         <Link to={`/${profile.role}/classes`} className="btn-secondary">View all <ArrowRight size={16} /></Link>
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="stagger mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {!loading && classes.length === 0 && (
-          <div className="card col-span-full p-10 text-center">
-            <School className="mx-auto text-slate-300" size={36} />
-            <h3 className="mt-4 font-bold text-slate-800">No classrooms yet</h3>
-            <p className="mt-1 text-sm text-slate-500">{isTeacher ? 'Create your first classroom from My Classes.' : 'Join a classroom using the code given by your teacher.'}</p>
+          <div className="card-warm col-span-full p-10 text-center">
+            <School className="mx-auto" size={36} style={{ color: '#A2907A' }} />
+            <h3 className="mt-4 font-display font-bold" style={{ color: '#18130F' }}>No classrooms yet</h3>
+            <p className="mt-1 text-sm" style={{ color: '#6E6153' }}>{isTeacher ? 'Create your first classroom from My Classes.' : 'Join a classroom using the code given by your teacher.'}</p>
           </div>
         )}
-        {classes.slice(0, 6).map((classroom) => (
-          <Link key={classroom.id} to={`/class/${classroom.id}`} className="card group p-5 transition hover:-translate-y-0.5 hover:shadow-md">
-            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700"><BookOpen size={21} /></div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">{classroom.subject}</p>
-            <h3 className="mt-1 text-lg font-bold text-slate-900 group-hover:text-indigo-700">{classroom.name}</h3>
-            <p className="mt-2 line-clamp-2 min-h-10 text-sm leading-5 text-slate-500">{classroom.description || 'Open the classroom to view notes, quizzes and live sessions.'}</p>
-            <div className="mt-5 flex items-center justify-between text-sm"><span className="text-slate-400">{isTeacher ? `Code: ${classroom.class_code}` : 'Open classroom'}</span><ArrowRight size={16} className="text-slate-400 transition group-hover:translate-x-1 group-hover:text-indigo-600" /></div>
+        {classes.slice(0, 6).map((classroom, i) => (
+          <Link key={classroom.id} to={`/class/${classroom.id}`} className="card group overflow-hidden transition hover:-translate-y-1">
+            <div className="h-2.5" style={{ background: accentFor(i) }} />
+            <div className="p-5">
+              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}><BookOpen size={21} /></div>
+              <p className="eyebrow">{classroom.subject}</p>
+              <h3 className="mt-1 font-display text-lg font-bold" style={{ color: '#18130F' }}>{classroom.name}</h3>
+              <p className="mt-2 line-clamp-2 min-h-10 text-sm leading-5" style={{ color: '#6E6153' }}>{classroom.description || 'Open the classroom to view notes, quizzes and live sessions.'}</p>
+              <div className="mt-5 flex items-center justify-between text-sm font-semibold"><span style={{ color: '#A79C8C' }}>{isTeacher ? `Code: ${classroom.class_code}` : 'Open classroom'}</span><ArrowRight size={16} className="transition group-hover:translate-x-1" /></div>
+            </div>
           </Link>
         ))}
       </div>

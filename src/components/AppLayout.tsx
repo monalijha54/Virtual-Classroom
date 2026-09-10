@@ -1,7 +1,9 @@
-import { BookOpen, GraduationCap, LayoutDashboard, LogOut, Menu, School, X } from 'lucide-react'
+import { BookOpen, LayoutDashboard, LogOut, Menu, School, X } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+
+const AVATAR_FILLS = ['#F2C230', '#F23DAE', '#CBDA2E', '#6478E0']
 
 export function AppLayout() {
   const { profile, signOut } = useAuth()
@@ -14,31 +16,39 @@ export function AppLayout() {
     { to: `${base}/classes`, label: 'My Classes', icon: School, end: false },
   ]
 
+  const avatarFill = AVATAR_FILLS[profile.full_name.length % AVATAR_FILLS.length]
+
   const sidebar = (
-    <div className="flex h-full flex-col bg-slate-950 text-white">
-      <div className="flex h-18 items-center gap-3 border-b border-white/10 px-5">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500"><GraduationCap size={22} /></div>
-        <div><div className="font-bold">RuralLearn</div><div className="text-xs text-slate-400">Online Learning for Rural Students</div></div>
+    <div className="flex h-full flex-col" style={{ background: '#211C17', color: '#F5EFE4' }}>
+      <div className="flex items-center gap-3 border-b px-5 py-5" style={{ borderColor: 'rgba(245,239,228,0.12)' }}>
+        <div className="flex h-10 w-10 items-center justify-center rounded-full font-display text-lg font-extrabold" style={{ background: '#F2C230', color: '#18130F' }}>RL</div>
+        <div><div className="font-display font-extrabold leading-tight">RuralLearn</div><div className="text-[11px]" style={{ color: '#B7ACA0' }}>Learn anywhere, grow everywhere</div></div>
       </div>
-      <nav className="flex-1 space-y-1 p-3">
+      <nav className="flex-1 space-y-1.5 p-3">
         {links.map(({ to, label, icon: Icon, end }) => (
           <NavLink
             key={to}
             to={to}
             end={end}
             onClick={() => setMobileOpen(false)}
-            className={({ isActive }) => `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${isActive ? 'bg-white/10 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+            className={({ isActive }) => `relative flex items-center gap-3 rounded-[12px] px-3 py-2.5 text-sm font-semibold transition ${isActive ? '' : 'hover:bg-white/5'}`}
+            style={({ isActive }) => isActive ? { background: '#FAF6ED', color: '#18130F' } : { color: '#B7ACA0' }}
           >
-            <Icon size={18} /> {label}
+            {({ isActive }) => (
+              <>
+                {isActive && <span className="absolute left-0 top-1/2 h-6 w-1.5 -translate-y-1/2 rounded-full" style={{ background: '#F23DAE' }} />}
+                <Icon size={18} /> {label}
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
-      <div className="border-t border-white/10 p-3">
-        <div className="mb-3 rounded-xl bg-white/5 p-3">
-          <div className="truncate text-sm font-semibold">{profile.full_name}</div>
-          <div className="mt-0.5 text-xs capitalize text-slate-400">{profile.role}</div>
+      <div className="border-t p-3" style={{ borderColor: 'rgba(245,239,228,0.12)' }}>
+        <div className="mb-3 rounded-[12px] p-3" style={{ background: 'rgba(250,246,237,0.06)' }}>
+          <div className="truncate text-sm font-semibold" style={{ color: '#F5EFE4' }}>{profile.full_name}</div>
+          <div className="mt-0.5 text-xs capitalize" style={{ color: '#B7ACA0' }}>{profile.role}</div>
         </div>
-        <button onClick={signOut} className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-slate-300 hover:bg-white/5 hover:text-white">
+        <button onClick={signOut} className="flex w-full items-center gap-3 rounded-[12px] px-3 py-2.5 text-sm font-semibold transition hover:bg-white/5" style={{ color: '#B7ACA0' }}>
           <LogOut size={18} /> Sign out
         </button>
       </div>
@@ -46,20 +56,20 @@ export function AppLayout() {
   )
 
   return (
-    <div className="min-h-screen bg-slate-50 lg:grid lg:grid-cols-[250px_1fr]">
+    <div className="min-h-screen lg:grid lg:grid-cols-[260px_1fr]" style={{ background: '#FAF6ED' }}>
       <aside className="sticky top-0 hidden h-screen lg:block">{sidebar}</aside>
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-slate-950/50" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute inset-y-0 left-0 w-72 shadow-2xl">{sidebar}</aside>
-          <button className="absolute right-4 top-4 rounded-xl bg-white p-2 text-slate-700" onClick={() => setMobileOpen(false)}><X size={20} /></button>
+          <div className="absolute inset-0" style={{ background: 'rgba(24,19,15,0.5)' }} onClick={() => setMobileOpen(false)} />
+          <aside className="absolute inset-y-0 left-0 w-72 overflow-hidden rounded-r-[20px] shadow-2xl">{sidebar}</aside>
+          <button className="absolute right-4 top-4 rounded-full bg-white p-2" style={{ color: '#18130F' }} onClick={() => setMobileOpen(false)}><X size={20} /></button>
         </div>
       )}
       <div className="min-w-0">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur md:px-6 lg:px-8">
-          <button className="rounded-xl p-2 hover:bg-slate-100 lg:hidden" onClick={() => setMobileOpen(true)}><Menu size={22} /></button>
-          <div className="hidden items-center gap-2 text-sm text-slate-500 sm:flex"><BookOpen size={16} /> Learn • Teach • Grow</div>
-          <div className="ml-auto flex h-9 w-9 items-center justify-center rounded-full bg-indigo-100 text-sm font-bold text-indigo-700">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b px-4 backdrop-blur md:px-6 lg:px-8" style={{ background: 'rgba(250,246,237,0.92)', borderColor: '#E4DBCB' }}>
+          <button className="rounded-full p-2 hover:bg-black/5 lg:hidden" onClick={() => setMobileOpen(true)}><Menu size={22} /></button>
+          <div className="hidden items-center gap-2 text-sm font-semibold sm:flex" style={{ color: '#6E6153' }}><BookOpen size={16} /> Learn • Teach • Grow</div>
+          <div className="ml-auto flex h-9 w-9 items-center justify-center rounded-full text-sm font-extrabold" style={{ background: avatarFill, color: '#18130F' }}>
             {profile.full_name.slice(0, 1).toUpperCase()}
           </div>
         </header>
