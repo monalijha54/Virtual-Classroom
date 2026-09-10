@@ -43,6 +43,8 @@ h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0
 .input { @apply w-full rounded-[12px] border bg-white px-3.5 py-2.5 text-sm outline-none transition; border-color: var(--color-hairline); color: var(--color-ink); }
 .input:focus { border-color: var(--color-ink); box-shadow: 0 0 0 4px rgba(242, 194, 48, 0.35); }
 .input::placeholder { color: var(--color-faint); }
+.input-has-left-icon { padding-left: 2.5rem; }
+.input-has-right-icon { padding-right: 2.5rem; }
 .label { @apply mb-1.5 block text-[12px] font-bold uppercase tracking-[0.06em]; color: var(--color-mutedbrand); }
 
 .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full px-10 py-3 text-[15px] font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; background: var(--color-ink); color: var(--color-canvas); }
@@ -56,8 +58,15 @@ h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0
 
 .pill { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold; }
 .eyebrow { @apply text-[12px] font-bold uppercase tracking-[0.14em]; color: var(--color-mutedbrand); }
+.eyebrow-onframe { @apply text-[12px] font-bold uppercase tracking-[0.14em]; color: #18130F; }
 .h-display { font-family: var(--font-display); font-weight: 800; line-height: 1.05; }
 .h-section { font-family: var(--font-display); font-weight: 800; line-height: 1.1; }
+
+/* Streamtime blog-card frame family: 18px outer / 14px inner (classroom cards) */
+.frame-card { border-radius: 18px; padding: 12px; }
+.frame-visual { border-radius: 14px; background: #FFFEF7; }
+.frame-thumb { border-radius: 6px; }
+.frame-cta { border-radius: 9999px; background: #18130F; color: #FAF6ED; }
 
 /* Paper grain — decorative shapes only */
 .shape-grain { position: relative; }

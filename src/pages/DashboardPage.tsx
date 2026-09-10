@@ -5,7 +5,8 @@ import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/supabase'
 import type { Classroom } from '../lib/types'
 import { StatCard } from '../components/BrandBits'
-import { DecorativeShape, accentFor } from '../components/DecorativeShape'
+import { ClassroomCard } from '../components/ClassroomCard'
+import { DecorativeShape } from '../components/DecorativeShape'
 import { CreateClassModal, JoinClassModal } from './ClassesPage'
 
 export function DashboardPage() {
@@ -104,16 +105,7 @@ export function DashboardPage() {
           </div>
         )}
         {classes.slice(0, 6).map((classroom, i) => (
-          <Link key={classroom.id} to={`/class/${classroom.id}`} className="card group overflow-hidden transition hover:-translate-y-1">
-            <div className="h-2.5" style={{ background: accentFor(i) }} />
-            <div className="p-5">
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}><BookOpen size={21} /></div>
-              <p className="eyebrow flex items-center gap-1.5"><span className="inline-block h-2 w-2 rounded-full" style={{ background: accentFor(i) }} />{classroom.subject}</p>
-              <h3 className="mt-1 font-display text-lg font-bold" style={{ color: '#18130F' }}>{classroom.name}</h3>
-              <p className="mt-2 line-clamp-2 min-h-10 text-sm leading-5" style={{ color: '#6E6153' }}>{classroom.description || 'Open the classroom to view notes, quizzes and live sessions.'}</p>
-              <div className="mt-5 flex items-center justify-between text-sm font-semibold"><span style={{ color: '#A79C8C' }}>{isTeacher ? `Code: ${classroom.class_code}` : 'Open classroom'}</span><ArrowRight size={16} className="transition group-hover:translate-x-1" /></div>
-            </div>
-          </Link>
+          <ClassroomCard key={classroom.id} classroom={classroom} index={i} />
         ))}
       </div>
 

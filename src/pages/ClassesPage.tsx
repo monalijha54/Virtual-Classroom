@@ -1,12 +1,11 @@
-import { BookOpen, Copy, LogIn, Plus, Search, Users } from 'lucide-react'
+import { Copy, LogIn, Plus, Search } from 'lucide-react'
 import { FormEvent, useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
-import { Link } from 'react-router-dom'
 import { Modal } from '../components/Modal'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/supabase'
 import type { Classroom } from '../lib/types'
-import { accentFor } from '../components/DecorativeShape'
+import { ClassroomCard } from '../components/ClassroomCard'
 
 function makeCode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
@@ -52,22 +51,13 @@ export function ClassesPage() {
         <button className={profile.role === 'teacher' ? 'btn-accent' : 'btn-primary'} onClick={() => profile.role === 'teacher' ? setShowCreate(true) : setShowJoin(true)}>{profile.role === 'teacher' ? <Plus size={17} /> : <LogIn size={17} />}{profile.role === 'teacher' ? 'Create classroom' : 'Join classroom'}</button>
       </div>
 
-      <div className="relative mb-5 max-w-md"><Search size={17} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: '#A79C8C' }} /><input className="input pl-9" placeholder="Search classes…" value={search} onChange={(e) => setSearch(e.target.value)} /></div>
+      <div className="relative mb-5 max-w-md"><Search size={17} aria-hidden className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" style={{ color: '#A79C8C' }} /><input className="input input-has-left-icon" placeholder="Search classes…" value={search} onChange={(e) => setSearch(e.target.value)} /></div>
 
       {loading ? <div className="py-16 text-center" style={{ color: '#6E6153' }}>Loading classrooms…</div> : (
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {filtered.length === 0 && <div className="card-warm col-span-full p-12 text-center" style={{ color: '#6E6153' }}>No classrooms found.</div>}
           {filtered.map((classroom, i) => (
-            <Link to={`/class/${classroom.id}`} key={classroom.id} className="card group overflow-hidden transition hover:-translate-y-1">
-              <div className="h-2.5" style={{ background: accentFor(i) }} />
-              <div className="p-5">
-                <div className="mb-5 flex items-start justify-between gap-4"><div className="flex h-11 w-11 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}><BookOpen size={21} /></div>{profile.role === 'teacher' && <span className="rounded-full px-2.5 py-1 font-mono text-xs font-bold" style={{ background: '#EDE1C7', color: '#18130F' }}>{classroom.class_code}</span>}</div>
-                <p className="eyebrow flex items-center gap-1.5"><span className="inline-block h-2 w-2 rounded-full" style={{ background: accentFor(i) }} />{classroom.subject}</p>
-                <h3 className="mt-1 font-display text-lg font-bold" style={{ color: '#18130F' }}>{classroom.name}</h3>
-                <p className="mt-2 line-clamp-2 min-h-10 text-sm" style={{ color: '#6E6153' }}>{classroom.description || 'No description added.'}</p>
-                <div className="mt-5 flex items-center gap-2 text-sm font-semibold" style={{ color: '#A79C8C' }}><Users size={15} /> Open classroom</div>
-              </div>
-            </Link>
+            <ClassroomCard key={classroom.id} classroom={classroom} index={i} />
           ))}
         </div>
       )}
@@ -103,5 +93,5 @@ export function JoinClassModal({ onClose, onJoined }: { onClose: () => void; onJ
     if (error) return toast.error(error.message)
     toast.success('Joined classroom'); onJoined(); onClose()
   }
-  return <Modal title="Join classroom" onClose={onClose}><form onSubmit={submit}><p className="mb-4 text-sm" style={{ color: '#6E6153' }}>Enter the 6-character code shared by your teacher.</p><label className="label">Class code</label><div className="relative"><input className="input pr-10 font-mono uppercase tracking-widest" maxLength={6} value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="ABC123" required /><Copy size={16} className="absolute right-3 top-1/2 -translate-y-1/2" style={{ color: '#A79C8C' }} /></div><button className="btn-primary mt-5 w-full" disabled={busy}>{busy ? 'Joining…' : 'Join classroom'}</button></form></Modal>
+  return <Modal title="Join classroom" onClose={onClose}><form onSubmit={submit}><p className="mb-4 text-sm" style={{ color: '#6E6153' }}>Enter the 6-character code shared by your teacher.</p><label className="label">Class code</label><div className="relative"><input className="input input-has-right-icon font-mono uppercase tracking-widest" maxLength={6} value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="ABC123" required /><Copy size={16} aria-hidden className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" style={{ color: '#A79C8C' }} /></div><button className="btn-primary mt-5 w-full" disabled={busy}>{busy ? 'Joining…' : 'Join classroom'}</button></form></Modal>
 }

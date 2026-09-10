@@ -5,7 +5,7 @@ import { Modal } from '../components/Modal'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/supabase'
 import type { Note } from '../lib/types'
-import { DecorativeShape } from '../components/DecorativeShape'
+import { DecorativeShape, accentFor } from '../components/DecorativeShape'
 
 export function NotesTab({ classroomId }: { classroomId: string }) {
   const { profile } = useAuth()
@@ -38,11 +38,13 @@ export function NotesTab({ classroomId }: { classroomId: string }) {
       {profile?.role === 'teacher' && <div className="mb-4 flex justify-end"><button className="btn-accent" onClick={() => setShowUpload(true)}><Plus size={17} />Upload notes</button></div>}
       <div className="space-y-3">
         {notes.length === 0 && <div className="card-warm p-10 text-center"><div className="flex items-end justify-center gap-2"><DecorativeShape kind="capsule" color="#6478E0" size={20} rotate={-10} /><DecorativeShape kind="sunburst" color="#C7B79C" size={32} /></div><FileText className="mx-auto mt-4" size={30} style={{ color: '#A2907A' }} /><h3 className="mt-3 font-display font-bold" style={{ color: '#18130F' }}>No notes uploaded</h3><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>PDFs and images shared by the teacher will appear here.</p></div>}
-        {notes.map((note) => (
-          <div key={note.id} className="card flex flex-col gap-4 p-4 sm:flex-row sm:items-center">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}><FileText size={21} /></div>
-            <div className="min-w-0 flex-1"><h3 className="truncate font-display font-bold" style={{ color: '#18130F' }}>{note.title}</h3><p className="mt-0.5 truncate text-sm" style={{ color: '#6E6153' }}>{note.description || note.file_name}</p><p className="mt-1 text-xs" style={{ color: '#A79C8C' }}>{new Date(note.created_at).toLocaleDateString()}</p></div>
-            <div className="flex gap-2"><button className="btn-secondary" onClick={() => openFile(note)}><Download size={16} />View</button>{profile?.role === 'teacher' && <button className="btn-danger" onClick={() => remove(note)}><Trash2 size={16} /></button>}</div>
+        {notes.map((note, i) => (
+          <div key={note.id} className="frame-card flex flex-col gap-3 p-2.5 sm:flex-row sm:items-center" style={{ background: accentFor(i) }}>
+            <div className="frame-thumb relative flex h-16 w-16 shrink-0 items-center justify-center" style={{ background: '#E7DCC4' }}>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}><FileText size={19} /></span>
+            </div>
+            <div className="min-w-0 flex-1 px-1"><h3 className="truncate font-display font-bold" style={{ color: '#18130F' }}>{note.title}</h3><p className="mt-0.5 truncate text-sm font-semibold" style={{ color: '#18130F' }}>{note.description || note.file_name}</p><p className="mt-1 text-xs font-semibold" style={{ color: '#18130F' }}>{new Date(note.created_at).toLocaleDateString()}</p></div>
+            <div className="flex gap-2 px-1 pb-1"><button className="btn-secondary !bg-white" onClick={() => openFile(note)}><Download size={16} />View</button>{profile?.role === 'teacher' && <button className="btn-danger !bg-[#18130F] !text-[#FAF6ED]" onClick={() => remove(note)}><Trash2 size={16} /></button>}</div>
           </div>
         ))}
       </div>
