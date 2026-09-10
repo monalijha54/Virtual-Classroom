@@ -3,8 +3,6 @@ import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
-const AVATAR_FILLS = ['#F2C230', '#F23DAE', '#CBDA2E', '#6478E0']
-
 export function AppLayout() {
   const { profile, signOut } = useAuth()
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -16,12 +14,10 @@ export function AppLayout() {
     { to: `${base}/classes`, label: 'My Classes', icon: School, end: false },
   ]
 
-  const avatarFill = AVATAR_FILLS[profile.full_name.length % AVATAR_FILLS.length]
-
   const sidebar = (
     <div className="flex h-full flex-col" style={{ background: '#211C17', color: '#F5EFE4' }}>
       <div className="flex items-center gap-3 border-b px-5 py-5" style={{ borderColor: 'rgba(245,239,228,0.12)' }}>
-        <div className="flex h-10 w-10 items-center justify-center rounded-full font-display text-lg font-extrabold" style={{ background: '#F2C230', color: '#18130F' }}>RL</div>
+        <div className="flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-extrabold" style={{ background: '#EDE1C7', color: '#18130F' }}>RL</div>
         <div><div className="font-display font-extrabold leading-tight">RuralLearn</div><div className="text-[11px]" style={{ color: '#B7ACA0' }}>Learn anywhere, grow everywhere</div></div>
       </div>
       <nav className="flex-1 space-y-1.5 p-3">
@@ -36,7 +32,7 @@ export function AppLayout() {
           >
             {({ isActive }) => (
               <>
-                {isActive && <span className="absolute left-0 top-1/2 h-6 w-1.5 -translate-y-1/2 rounded-full" style={{ background: '#F23DAE' }} />}
+                {isActive && <span className="absolute left-0 top-1/2 h-6 w-1.5 -translate-y-1/2 rounded-full" style={{ background: '#EDE1C7' }} />}
                 <Icon size={18} /> {label}
               </>
             )}
@@ -69,7 +65,7 @@ export function AppLayout() {
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b px-4 backdrop-blur md:px-6 lg:px-8" style={{ background: 'rgba(250,246,237,0.92)', borderColor: '#E4DBCB' }}>
           <button className="rounded-full p-2 hover:bg-black/5 lg:hidden" onClick={() => setMobileOpen(true)}><Menu size={22} /></button>
           <div className="hidden items-center gap-2 text-sm font-semibold sm:flex" style={{ color: '#6E6153' }}><BookOpen size={16} /> Learn • Teach • Grow</div>
-          <div className="ml-auto flex h-9 w-9 items-center justify-center rounded-full text-sm font-extrabold" style={{ background: avatarFill, color: '#18130F' }}>
+          <div className="ml-auto flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold" style={{ background: '#EDE1C7', color: '#18130F' }}>
             {profile.full_name.slice(0, 1).toUpperCase()}
           </div>
         </header>

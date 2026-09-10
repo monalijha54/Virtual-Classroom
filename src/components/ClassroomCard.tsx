@@ -1,43 +1,34 @@
 import { ArrowRight, BookOpen, Code2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { Classroom } from '../lib/types'
-import { DecorativeShape, accentFor } from './DecorativeShape'
 
-function Sticker({ index }: { index: number }) {
-  if (index % 3 === 0) return <DecorativeShape kind="sunburst" color="#F23DAE" size={20} rotate={-8} />
-  if (index % 3 === 1) return <DecorativeShape kind="squiggle" color="#18130F" size={22} />
-  return <DecorativeShape kind="capsule" color="#CBDA2E" size={18} rotate={-12} />
-}
-
-export function ClassroomCard({ classroom, index }: { classroom: Classroom; index: number }) {
+export function ClassroomCard({ classroom }: { classroom: Classroom; index: number }) {
   return (
     <Link
       to={`/class/${classroom.id}`}
-      className="frame-card group flex flex-col transition hover:-translate-y-1"
-      style={{ background: accentFor(index) }}
+      className="card group flex flex-col p-5 transition hover:-translate-y-1"
     >
-      <div className="frame-visual flex flex-1 flex-col p-5">
-        <div className="flex items-start justify-between">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}>
-            <BookOpen size={24} />
-          </span>
-          <span aria-hidden><Sticker index={index} /></span>
-        </div>
-        <p className="mt-6 flex items-center gap-2 text-[12px] font-bold uppercase" style={{ letterSpacing: '0.22em', color: '#18130F' }}>
-          <span className="inline-block h-2 w-2 rounded-full" style={{ background: '#18130F' }} />
-          <span className="truncate">{classroom.subject}</span>
-        </p>
-        <h3 className="mt-1.5 truncate font-display text-[28px] font-extrabold leading-tight" style={{ color: '#18130F' }}>
-          {classroom.name}
-        </h3>
-        <p className="mt-1.5 flex items-center gap-1.5 text-[15px] font-semibold" style={{ color: '#A79C8C' }}>
-          <Code2 size={16} />
-          <span>Code: <span className="font-mono tracking-widest">{classroom.class_code}</span></span>
-        </p>
+      <div className="flex items-start justify-between gap-3">
+        <span className="flex h-11 w-11 items-center justify-center rounded-[12px]" style={{ background: '#EDE1C7', color: '#18130F' }}>
+          <BookOpen size={21} />
+        </span>
+        <span className="rounded-full px-2.5 py-1 font-mono text-xs font-bold" style={{ background: '#EDE1C7', color: '#18130F' }}>
+          {classroom.class_code}
+        </span>
       </div>
-      <div className="frame-cta mt-3 flex h-12 items-center justify-between px-5 text-[16px] font-semibold">
+      <p className="mt-4 text-[12px] font-bold uppercase" style={{ letterSpacing: '0.08em', color: '#6E6153' }}>
+        <span className="truncate">{classroom.subject}</span>
+      </p>
+      <h3 className="mt-1 truncate font-display text-[20px] font-bold leading-snug" style={{ color: '#18130F' }}>
+        {classroom.name}
+      </h3>
+      <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium" style={{ color: '#6E6153' }}>
+        <Code2 size={15} />
+        <span>Code: <span className="font-mono tracking-[0.08em]">{classroom.class_code}</span></span>
+      </p>
+      <div className="mt-4 flex h-11 items-center justify-between rounded-full px-5 text-sm font-bold" style={{ background: '#18130F', color: '#FAF6ED' }}>
         <span>Open classroom</span>
-        <ArrowRight size={20} className="transition group-hover:translate-x-1" />
+        <ArrowRight size={17} className="transition group-hover:translate-x-1" />
       </div>
     </Link>
   )

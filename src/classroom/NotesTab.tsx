@@ -5,7 +5,6 @@ import { Modal } from '../components/Modal'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/supabase'
 import type { Note } from '../lib/types'
-import { DecorativeShape, accentFor } from '../components/DecorativeShape'
 
 export function NotesTab({ classroomId }: { classroomId: string }) {
   const { profile } = useAuth()
@@ -35,16 +34,14 @@ export function NotesTab({ classroomId }: { classroomId: string }) {
 
   return (
     <div>
-      {profile?.role === 'teacher' && <div className="mb-4 flex justify-end"><button className="btn-accent" onClick={() => setShowUpload(true)}><Plus size={17} />Upload notes</button></div>}
+      {profile?.role === 'teacher' && <div className="mb-4 flex justify-end"><button className="btn-primary" onClick={() => setShowUpload(true)}><Plus size={17} />Upload notes</button></div>}
       <div className="space-y-3">
-        {notes.length === 0 && <div className="card-warm p-10 text-center"><div className="flex items-end justify-center gap-2"><DecorativeShape kind="capsule" color="#6478E0" size={20} rotate={-10} /><DecorativeShape kind="sunburst" color="#C7B79C" size={32} /></div><FileText className="mx-auto mt-4" size={30} style={{ color: '#A2907A' }} /><h3 className="mt-3 font-display font-bold" style={{ color: '#18130F' }}>No notes uploaded</h3><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>PDFs and images shared by the teacher will appear here.</p></div>}
-        {notes.map((note, i) => (
-          <div key={note.id} className="frame-card flex flex-col gap-3 p-2.5 sm:flex-row sm:items-center" style={{ background: accentFor(i) }}>
-            <div className="frame-thumb relative flex h-16 w-16 shrink-0 items-center justify-center" style={{ background: '#E7DCC4' }}>
-              <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}><FileText size={19} /></span>
-            </div>
-            <div className="min-w-0 flex-1 px-1"><h3 className="truncate font-display font-bold" style={{ color: '#18130F' }}>{note.title}</h3><p className="mt-0.5 truncate text-sm font-semibold" style={{ color: '#18130F' }}>{note.description || note.file_name}</p><p className="mt-1 text-xs font-semibold" style={{ color: '#18130F' }}>{new Date(note.created_at).toLocaleDateString()}</p></div>
-            <div className="flex gap-2 px-1 pb-1"><button className="btn-secondary !bg-white" onClick={() => openFile(note)}><Download size={16} />View</button>{profile?.role === 'teacher' && <button className="btn-danger !bg-[#18130F] !text-[#FAF6ED]" onClick={() => remove(note)}><Trash2 size={16} /></button>}</div>
+        {notes.length === 0 && <div className="card p-10 text-center"><FileText className="mx-auto" size={30} style={{ color: '#A2907A' }} /><h3 className="mt-3 font-display font-bold" style={{ color: '#18130F' }}>No notes uploaded</h3><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>PDFs and images shared by the teacher will appear here.</p></div>}
+        {notes.map((note) => (
+          <div key={note.id} className="card flex flex-col gap-4 p-4 sm:flex-row sm:items-center">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px]" style={{ background: '#EDE1C7', color: '#18130F' }}><FileText size={20} /></div>
+            <div className="min-w-0 flex-1"><h3 className="truncate font-display font-bold" style={{ color: '#18130F' }}>{note.title}</h3><p className="mt-0.5 truncate text-sm" style={{ color: '#6E6153' }}>{note.description || note.file_name}</p><p className="mt-1 text-xs" style={{ color: '#A79C8C' }}>{new Date(note.created_at).toLocaleDateString()}</p></div>
+            <div className="flex gap-2"><button className="btn-secondary" onClick={() => openFile(note)}><Download size={16} />View</button>{profile?.role === 'teacher' && <button className="btn-danger" onClick={() => remove(note)}><Trash2 size={16} /></button>}</div>
           </div>
         ))}
       </div>
@@ -80,5 +77,5 @@ function UploadNoteModal({ classroomId, teacherId, onClose, onUploaded }: { clas
     setBusy(false); toast.success('Notes uploaded'); onUploaded(); onClose()
   }
 
-  return <Modal title="Upload notes" onClose={onClose}><form className="space-y-4" onSubmit={submit}><div><label className="label">Title</label><input className="input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Unit 1 — Introduction" required /></div><div><label className="label">Description</label><textarea className="input min-h-20" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Optional short description" /></div><div><label className="label">File</label><label className="flex cursor-pointer items-center justify-center gap-2 rounded-[12px] border-2 border-dashed p-6 text-sm transition hover:bg-black/[0.02]" style={{ borderColor: '#E4DBCB', color: '#6E6153' }}><Upload size={18} />{file ? file.name : 'Choose PDF, JPG or PNG'}<input type="file" accept=".pdf,image/jpeg,image/png" className="hidden" onChange={(e) => setFile(e.target.files?.[0] ?? null)} /></label><p className="mt-1.5 text-xs" style={{ color: '#A79C8C' }}>Maximum 10 MB.</p></div><div className="flex justify-end gap-2"><button type="button" className="btn-secondary" onClick={onClose}>Cancel</button><button className="btn-accent" disabled={busy || !file}>{busy ? 'Uploading…' : 'Upload'}</button></div></form></Modal>
+  return <Modal title="Upload notes" onClose={onClose}><form className="space-y-4" onSubmit={submit}><div><label className="label">Title</label><input className="input" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Unit 1 — Introduction" required /></div><div><label className="label">Description</label><textarea className="input min-h-20" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Optional short description" /></div><div><label className="label">File</label><label className="flex cursor-pointer items-center justify-center gap-2 rounded-[12px] border-2 border-dashed p-6 text-sm transition hover:bg-black/[0.02]" style={{ borderColor: '#E4DBCB', color: '#6E6153' }}><Upload size={18} />{file ? file.name : 'Choose PDF, JPG or PNG'}<input type="file" accept=".pdf,image/jpeg,image/png" className="hidden" onChange={(e) => setFile(e.target.files?.[0] ?? null)} /></label><p className="mt-1.5 text-xs" style={{ color: '#A79C8C' }}>Maximum 10 MB.</p></div><div className="flex justify-end gap-2"><button type="button" className="btn-secondary" onClick={onClose}>Cancel</button><button className="btn-primary" disabled={busy || !file}>{busy ? 'Uploading…' : 'Upload'}</button></div></form></Modal>
 }

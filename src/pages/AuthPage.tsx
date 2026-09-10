@@ -4,7 +4,6 @@ import toast from 'react-hot-toast'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import type { UserRole } from '../lib/types'
-import { DecorativeShape } from '../components/DecorativeShape'
 
 export function AuthPage({ role }: { role: UserRole }) {
   const { profile, loading, signIn, signUp, signOut, claimTeacherAccess } = useAuth()
@@ -45,7 +44,7 @@ export function AuthPage({ role }: { role: UserRole }) {
     return (
       <div className="flex min-h-screen items-center justify-center p-5" style={{ background: '#FAF6ED' }}>
         <div className="w-full max-w-md border bg-white p-7 sm:p-8" style={{ borderRadius: 20, borderColor: '#E4DBCB' }}>
-          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full" style={{ background: '#F2C230', color: '#18130F' }}>
+          <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full" style={{ background: '#EDE1C7', color: '#18130F' }}>
             <KeyRound size={24} />
           </div>
           <p className="eyebrow mb-2">Teacher portal</p>
@@ -129,25 +128,18 @@ export function AuthPage({ role }: { role: UserRole }) {
     <div className="grid min-h-screen lg:grid-cols-2" style={{ background: '#FAF6ED' }}>
       <section className="relative hidden overflow-hidden p-12 lg:flex lg:flex-col lg:justify-between" style={{ background: '#211C17', color: '#F5EFE4' }}>
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full font-display text-lg font-extrabold" style={{ background: '#F2C230', color: '#18130F' }}>RL</div>
+          <div className="flex h-11 w-11 items-center justify-center rounded-full font-display text-sm font-extrabold" style={{ background: '#EDE1C7', color: '#18130F' }}>RL</div>
           <div><div className="font-display text-lg font-extrabold">RuralLearn</div><div className="text-xs" style={{ color: '#B7ACA0' }}>Learn anywhere, grow everywhere</div></div>
         </Link>
         <div className="max-w-lg">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold" style={{ background: isTeacher ? '#F2C230' : '#CBDA2E', color: '#18130F' }}>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold" style={{ borderColor: 'rgba(245,239,228,0.2)', color: '#F5EFE4' }}>
             {isTeacher ? <School size={15} /> : <GraduationCap size={15} />}
             {isTeacher ? 'Teacher Portal' : 'Student Portal'}
           </div>
-          <h1 className="h-display text-5xl">Learn anywhere, grow everywhere.</h1>
+          <h1 className="mt-2 font-display text-4xl font-bold">Learn anywhere, grow everywhere.</h1>
           <p className="mt-5 text-lg leading-8" style={{ color: '#B7ACA0' }}>Simple online classes, notes, quizzes and live lessons — built for rural learners.</p>
-          <div className="mt-8 flex items-end gap-3">
-            <DecorativeShape kind="sunburst" color="#F2C230" size={52} rotate={-8} />
-            <DecorativeShape kind="capsule" color="#6478E0" size={24} rotate={-10} />
-            <DecorativeShape kind="circle" color="#CBDA2E" size={34} />
-            <DecorativeShape kind="triangle" color="#C7B79C" size={30} rotate={8} />
-            <DecorativeShape kind="squiggle" color="#F5EFE4" size={30} />
-          </div>
         </div>
-        <div className="flex items-center gap-2 text-sm" style={{ color: '#B7ACA0' }}><DecorativeShape kind="sunburst" color="#CBDA2E" size={16} /><ShieldCheck size={17} /> Role-based secure access</div>
+        <div className="flex items-center gap-2 text-sm" style={{ color: '#B7ACA0' }}><ShieldCheck size={17} /> Role-based secure access</div>
       </section>
 
       <section className="flex items-center justify-center p-5 sm:p-8">
@@ -158,7 +150,7 @@ export function AuthPage({ role }: { role: UserRole }) {
           </div>
           <div className="mb-7">
             <p className="eyebrow mb-2">{isTeacher ? 'Teacher portal' : 'Student portal'}</p>
-            <h2 className="h-section text-4xl" style={{ color: '#18130F' }}>{mode === 'login' ? 'Welcome back' : 'Create your account'}</h2>
+            <h2 className="mt-2 font-display text-3xl font-bold" style={{ color: '#18130F' }}>{mode === 'login' ? 'Welcome back' : 'Create your account'}</h2>
             <p className="mt-2" style={{ color: '#6E6153' }}>{mode === 'login' ? 'Sign in to continue to your classroom.' : `Register as a ${role}.`}</p>
           </div>
 
@@ -175,7 +167,7 @@ export function AuthPage({ role }: { role: UserRole }) {
                   <input className="input" value={teacherCode} onChange={(e) => setTeacherCode(e.target.value)} placeholder="College-provided code" required={mode === 'signup'} />
                 </div>
               )}
-              <button className={isTeacher && mode === 'signup' ? 'btn-accent w-full' : 'btn-primary w-full'} disabled={busy}>{busy ? 'Please wait…' : mode === 'login' ? 'Sign in' : 'Create account'} <ArrowRight size={17} /></button>
+              <button className="btn-primary w-full" disabled={busy}>{busy ? 'Please wait…' : mode === 'login' ? 'Sign in' : 'Create account'} <ArrowRight size={17} /></button>
             </form>
 
             <div className="mt-6 text-center text-sm" style={{ color: '#6E6153' }}>

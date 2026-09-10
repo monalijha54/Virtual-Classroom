@@ -41,7 +41,7 @@ h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0
 .card { @apply rounded-[20px] border bg-white shadow-none; border-color: var(--color-hairline); }
 .card-warm { @apply rounded-[20px] border; background: var(--color-warm); border-color: var(--color-hairline); }
 .input { @apply w-full rounded-[12px] border bg-white px-3.5 py-2.5 text-sm outline-none transition; border-color: var(--color-hairline); color: var(--color-ink); }
-.input:focus { border-color: var(--color-ink); box-shadow: 0 0 0 4px rgba(242, 194, 48, 0.35); }
+.input:focus { border-color: var(--color-ink); box-shadow: 0 0 0 4px rgba(24, 19, 15, 0.08); }
 .input::placeholder { color: var(--color-faint); }
 .input-has-left-icon { padding-left: 2.5rem; }
 .input-has-right-icon { padding-right: 2.5rem; }
@@ -49,24 +49,17 @@ h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0
 
 .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full px-10 py-3 text-[15px] font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; background: var(--color-ink); color: var(--color-canvas); }
 .btn-primary:hover { background: var(--color-inksoft); }
-.btn-accent { @apply inline-flex items-center justify-center gap-2 rounded-full px-10 py-3 text-[15px] font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; background: var(--color-accent); color: var(--color-ink); }
-.btn-accent:hover { filter: brightness(0.96); }
+.btn-accent { @apply inline-flex items-center justify-center gap-2 rounded-full px-10 py-3 text-[15px] font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; background: var(--color-ink); color: var(--color-canvas); }
+.btn-accent:hover { background: var(--color-inksoft); }
 .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-full border bg-white px-6 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50; border-color: var(--color-hairline); color: var(--color-ink); }
 .btn-secondary:hover { background: var(--color-canvas); }
-.btn-danger { @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition; background: rgba(242, 61, 174, 0.12); color: #9d1659; }
-.btn-danger:hover { background: rgba(242, 61, 174, 0.2); }
+.btn-danger { @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition; background: #F5F0E6; color: #9d1659; }
+.btn-danger:hover { background: #EDE1C7; }
 
 .pill { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold; }
 .eyebrow { @apply text-[12px] font-bold uppercase tracking-[0.14em]; color: var(--color-mutedbrand); }
-.eyebrow-onframe { @apply text-[12px] font-bold uppercase tracking-[0.14em]; color: #18130F; }
 .h-display { font-family: var(--font-display); font-weight: 800; line-height: 1.05; }
 .h-section { font-family: var(--font-display); font-weight: 800; line-height: 1.1; }
-
-/* Streamtime blog-card frame family: 18px outer / 14px inner (classroom cards) */
-.frame-card { border-radius: 18px; padding: 12px; }
-.frame-visual { border-radius: 14px; background: #FFFEF7; }
-.frame-thumb { border-radius: 6px; }
-.frame-cta { border-radius: 9999px; background: #18130F; color: #FAF6ED; }
 
 /* Paper grain — decorative shapes only */
 .shape-grain { position: relative; }

@@ -6,7 +6,6 @@ import { Modal } from '../components/Modal'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/supabase'
 import type { Quiz, QuizAttempt, QuizOption } from '../lib/types'
-import { DecorativeShape, accentFor } from '../components/DecorativeShape'
 
 type DraftQuestion = {
   question_text: string
@@ -55,39 +54,39 @@ export function QuizzesTab({ classroomId }: { classroomId: string }) {
 
   return (
     <div>
-      {profile.role === 'teacher' && <div className="mb-4 flex justify-end"><button className="btn-accent" onClick={() => setShowCreate(true)}><Plus size={17} />Create quiz</button></div>}
+      {profile.role === 'teacher' && <div className="mb-4 flex justify-end"><button className="btn-primary" onClick={() => setShowCreate(true)}><Plus size={17} />Create quiz</button></div>}
       <div className="space-y-3">
-        {quizzes.length === 0 && <div className="card-warm p-10 text-center"><div className="flex items-end justify-center gap-2"><DecorativeShape kind="triangle" color="#3B332C" size={28} /><DecorativeShape kind="sunburst" color="#F2C230" size={32} /></div><ClipboardList className="mx-auto mt-4" size={30} style={{ color: '#A2907A' }} /><h3 className="mt-3 font-display font-bold" style={{ color: '#18130F' }}>No quizzes yet</h3><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>{profile.role === 'teacher' ? 'Create an MCQ quiz for your students.' : 'Published quizzes will appear here.'}</p></div>}
+        {quizzes.length === 0 && <div className="card p-10 text-center"><ClipboardList className="mx-auto" size={30} style={{ color: '#A2907A' }} /><h3 className="mt-3 font-display font-bold" style={{ color: '#18130F' }}>No quizzes yet</h3><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>{profile.role === 'teacher' ? 'Create an MCQ quiz for your students.' : 'Published quizzes will appear here.'}</p></div>}
         {quizzes.map((quiz, qi) => {
           const attempt = attempts.find((a) => a.quiz_id === quiz.id)
           const percentage = attempt && attempt.total_marks ? Math.round((attempt.score / attempt.total_marks) * 100) : 0
           return (
-            <div key={quiz.id} className="frame-card p-2.5" style={{ background: accentFor(qi) }}>
-              <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+            <div key={quiz.id} className="card p-5">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div className="flex min-w-0 flex-1 items-start gap-3">
-                  <div className="frame-thumb relative flex h-14 w-14 shrink-0 items-center justify-center" style={{ background: '#E7DCC4' }}>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}><ClipboardList size={18} /></span>
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px]" style={{ background: '#EDE1C7', color: '#18130F' }}>
+                    <ClipboardList size={20} />
                   </div>
-                  <div className="min-w-0 px-1 py-1">
+                  <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="font-display font-bold" style={{ color: '#18130F' }}>{quiz.title}</h3>
-                      {profile.role === 'teacher' && <span className="pill" style={{ background: '#18130F', color: '#FAF6ED' }}>{quiz.published ? 'Published' : 'Draft'}</span>}
-                      {attempt && <span className="pill" style={{ background: '#18130F', color: '#FAF6ED' }}>Completed</span>}
+                      {profile.role === 'teacher' && <span className="pill" style={{ background: '#EDE1C7', color: '#18130F' }}>{quiz.published ? 'Published' : 'Draft'}</span>}
+                      {attempt && <span className="pill" style={{ background: '#EDE1C7', color: '#18130F' }}>Completed</span>}
                     </div>
-                    <p className="mt-1 text-sm font-semibold" style={{ color: '#18130F' }}>{quiz.description || 'MCQ quiz'} • {quiz.duration_minutes} min</p>
-                    {attempt && <p className="mt-1 text-sm font-extrabold" style={{ color: '#18130F' }}>Your result: {attempt.score}/{attempt.total_marks} ({percentage}%)</p>}
+                    <p className="mt-1 text-sm" style={{ color: '#6E6153' }}>{quiz.description || 'MCQ quiz'} • {quiz.duration_minutes} min</p>
+                    {attempt && <p className="mt-1 text-sm font-bold" style={{ color: '#18130F' }}>Your result: {attempt.score}/{attempt.total_marks} ({percentage}%)</p>}
                   </div>
                 </div>
                 {profile.role === 'teacher' ? (
-                  <div className="flex flex-wrap gap-2 px-1 pb-1">
-                    <Link className="btn-secondary !bg-white" to={`/quiz/${quiz.id}/results`}><BarChart3 size={16} />Results</Link>
-                    <button className="btn-secondary !bg-white" onClick={() => togglePublish(quiz)}>{quiz.published ? <EyeOff size={16} /> : <Eye size={16} />}{quiz.published ? 'Unpublish' : 'Publish'}</button>
-                    <button className="btn-danger !bg-[#18130F] !text-[#FAF6ED]" onClick={() => remove(quiz)}><Trash2 size={16} /></button>
+                  <div className="flex flex-wrap gap-2">
+                    <Link className="btn-secondary" to={`/quiz/${quiz.id}/results`}><BarChart3 size={16} />Results</Link>
+                    <button className="btn-secondary" onClick={() => togglePublish(quiz)}>{quiz.published ? <EyeOff size={16} /> : <Eye size={16} />}{quiz.published ? 'Unpublish' : 'Publish'}</button>
+                    <button className="btn-danger" onClick={() => remove(quiz)}><Trash2 size={16} /></button>
                   </div>
                 ) : attempt ? (
-                  <div className="flex items-center gap-2 px-2 pb-1 font-extrabold" style={{ color: '#18130F' }}><CheckCircle2 size={18} />Submitted</div>
+                  <div className="flex items-center gap-2 font-bold" style={{ color: '#3f6212' }}><CheckCircle2 size={18} />Submitted</div>
                 ) : (
-                  <div className="px-1 pb-1"><Link className="btn-primary" to={`/quiz/${quiz.id}`}>Start quiz</Link></div>
+                  <Link className="btn-primary" to={`/quiz/${quiz.id}`}>Start quiz</Link>
                 )}
               </div>
             </div>

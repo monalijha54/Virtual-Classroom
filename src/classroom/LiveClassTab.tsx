@@ -5,7 +5,6 @@ import { Modal } from '../components/Modal'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/supabase'
 import type { LiveSession } from '../lib/types'
-import { DecorativeShape } from '../components/DecorativeShape'
 
 declare global {
   interface Window {
@@ -81,17 +80,16 @@ export function LiveClassTab({ classroomId, classroomName }: { classroomId: stri
   return (
     <div>
       {!session ? (
-        <div className="card-warm p-10 text-center">
-          <div className="flex items-end justify-center gap-2"><DecorativeShape kind="sunburst" color="#F23DAE" size={36} /><DecorativeShape kind="circle" color="#6478E0" size={24} /></div>
-          <div className="mx-auto mt-4 flex h-14 w-14 items-center justify-center rounded-full" style={{ background: '#18130F', color: '#FAF6ED' }}><Video size={26} /></div>
-          <h3 className="mt-4 font-display text-lg font-extrabold" style={{ color: '#18130F' }}>No live class right now</h3>
+        <div className="card p-10 text-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-[12px]" style={{ background: '#EDE1C7', color: '#18130F' }}><Video size={24} /></div>
+          <h3 className="mt-4 font-display text-lg font-bold" style={{ color: '#18130F' }}>No live class right now</h3>
           <p className="mx-auto mt-2 max-w-md text-sm leading-6" style={{ color: '#6E6153' }}>{profile.role === 'teacher' ? 'Start a live session and students in this classroom can join immediately.' : 'When your teacher starts a session, it will appear here.'}</p>
           {profile.role === 'teacher' && <button className="btn-primary mt-5" onClick={() => setShowStart(true)}><Radio size={17} />Start live class</button>}
         </div>
       ) : (
         <div className="space-y-4">
           <div className="card flex flex-col justify-between gap-4 p-4 sm:flex-row sm:items-center">
-            <div><div className="flex items-center gap-2 text-sm font-bold" style={{ color: '#9d1659' }}><span className="h-2 w-2 animate-pulse rounded-full" style={{ background: '#F23DAE' }} /> LIVE NOW</div><h3 className="mt-1 font-display font-bold" style={{ color: '#18130F' }}>{session.title}</h3><p className="text-xs" style={{ color: '#A79C8C' }}>Started {new Date(session.started_at).toLocaleTimeString()}</p></div>
+            <div><div className="flex items-center gap-2 text-sm font-bold" style={{ color: '#B42318' }}><span className="h-2 w-2 animate-pulse rounded-full" style={{ background: '#B42318' }} /> LIVE NOW</div><h3 className="mt-1 font-display font-bold" style={{ color: '#18130F' }}>{session.title}</h3><p className="text-xs" style={{ color: '#A79C8C' }}>Started {new Date(session.started_at).toLocaleTimeString()}</p></div>
             {profile.role === 'teacher' && <button className="btn-danger" onClick={stop}><Square size={15} />End class</button>}
           </div>
           <div className="overflow-hidden border" style={{ borderRadius: 20, borderColor: '#E4DBCB', background: '#211C17' }}>

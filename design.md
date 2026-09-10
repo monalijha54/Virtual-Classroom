@@ -1,411 +1,124 @@
----
-version: alpha
-name: Streamtime Analysis
-description: An analysis of Streamtime's design language — a maximalist, hand-crafted collage system built to feel human, warm, and playful. A bespoke hand-lettered wordmark, torn-paper/fabric-textured sunbursts and squiggles, chunky stadium-pill buttons, and a saturated rotating accent palette (marigold yellow, hot pink, lime, periwinkle blue) sit over a warm cream canvas that alternates with full-bleed near-black panels. Where a minimal system reserves color for scarcity, Streamtime spends it everywhere — color and texture ARE the brand, not an accent on top of it.
-
-colors:
-  ink: "#18130F"
-  ink-soft: "#2B241E"
-  panel-dark: "#211C17"
-  canvas: "#FAF6ED"
-  canvas-warm: "#EDE1C7"
-  text-muted: "#6E6153"
-  text-faint: "#A79C8C"
-  text-on-dark: "#F5EFE4"
-  text-on-dark-muted: "#B7ACA0"
-  accent-yellow: "#F2C230"
-  accent-pink: "#F23DAE"
-  accent-lime: "#CBDA2E"
-  accent-blue: "#6478E0"
-  stone: "#C7B79C"
-  stone-dark: "#A2907A"
-  charcoal-shape: "#3B332C"
-  white: "#FFFFFF"
-  black: "#000000"
-  hairline: "#E4DBCB"
-
-typography:
-  heading-1:
-    fontFamily: Basis Grotesque
-    fontSize: 56px
-    fontWeight: 800
-    lineHeight: 1.05
-    letterSpacing: 0
-  heading-2:
-    fontFamily: Basis Grotesque
-    fontSize: 40px
-    fontWeight: 800
-    lineHeight: 1.1
-    letterSpacing: 0
-  heading-3:
-    fontFamily: Basis Grotesque
-    fontSize: 28px
-    fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: 0
-  heading-4:
-    fontFamily: Basis Grotesque
-    fontSize: 20px
-    fontWeight: 700
-    lineHeight: 1.25
-    letterSpacing: 0
-  title:
-    fontFamily: Basis Grotesque
-    fontSize: 18px
-    fontWeight: 700
-    lineHeight: 1.3
-    letterSpacing: 0
-  body-lg:
-    fontFamily: Basis Grotesque
-    fontSize: 20px
-    fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: 0
-  body:
-    fontFamily: Basis Grotesque
-    fontSize: 16px
-    fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: 0
-  body-sm:
-    fontFamily: Basis Grotesque
-    fontSize: 14px
-    fontWeight: 400
-    lineHeight: 1.45
-    letterSpacing: 0
-  link:
-    fontFamily: Basis Grotesque
-    fontSize: 15px
-    fontWeight: 600
-    lineHeight: 1.4
-    letterSpacing: 0
-  label:
-    fontFamily: Basis Grotesque
-    fontSize: 12px
-    fontWeight: 700
-    lineHeight: 1.3
-    letterSpacing: 0.02em
-  caption:
-    fontFamily: Basis Grotesque
-    fontSize: 12px
-    fontWeight: 500
-    lineHeight: 1.3
-    letterSpacing: 0
-
-rounded:
-  none: 0px
-  sm: 12px
-  md: 20px
-  lg: 32px
-  full: 9999px
-
-spacing:
-  xxs: 4px
-  xs: 8px
-  sm: 12px
-  md: 16px
-  lg: 24px
-  xl: 40px
-  xxl: 64px
-  section: 96px
-  section-lg: 140px
-
-textures:
-  paper-grain: Subtle fiber/grain overlay applied to flat decorative-shape fills and some photo treatments. Reserved for illustrative elements — never applied to functional UI chrome (buttons, cards, inputs stay flat and clean so the texture reads as a deliberate, special material).
-
-components:
-  nav-pill-dark:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.canvas}"
-    typography: "{typography.link}"
-    rounded: "{rounded.full}"
-
-  nav-pill-accent:
-    backgroundColor: "{colors.accent-yellow}"
-    textColor: "{colors.ink}"
-    typography: "{typography.link}"
-    rounded: "{rounded.full}"
-
-  nav-link:
-    textColor: "{colors.ink}"
-    typography: "{typography.link}"
-
-  button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.canvas}"
-    typography: "{typography.link}"
-    rounded: "{rounded.full}"
-    padding: "{spacing.sm} {spacing.xl}"
-
-  brandmark-monogram:
-    textColor: "{colors.ink}"
-    description: "Condensed 'sT' lockup used in the nav — a compact cousin of the hero wordmark, not a scaled-down version of it."
-
-  hero-wordmark:
-    textColor: "{colors.black}"
-    description: "Bespoke hand-lettered logotype asset ('STREAMTIME!'). Irregular baseline, thick uneven marker-brush strokes, scaled full-bleed edge-to-edge across the hero. Treated as a one-off illustration, not a reusable type style."
-
-  decorative-shape:
-    fillColor: "rotates across {colors.accent-yellow}, {colors.accent-pink}, {colors.accent-lime}, {colors.accent-blue}, {colors.stone}, {colors.charcoal-shape}"
-    texture: "{textures.paper-grain}"
-    rounded: "{rounded.none}"
-    description: "Sunbursts, triangles, circles, squiggles, and capsule/bandage shapes cut from textured flat color. Scattered as brand punctuation around the wordmark and layered into photography."
-
-  quote-panel:
-    backgroundColor: "{colors.panel-dark}"
-    textColor: "{colors.text-on-dark}"
-    typography: "{typography.body-lg}"
-    emphasisStyle: underline
-
-  product-screenshot-card:
-    backgroundColor: "{colors.white}"
-    rounded: "{rounded.lg}"
-    borderColor: "{colors.hairline}"
-
-  feature-row:
-    headingTypography: "{typography.title}"
-    bodyTypography: "{typography.body-sm}"
-    textColor: "{colors.ink}"
-    bodyColor: "{colors.text-muted}"
-
-  cta-banner:
-    backgroundColor: "{colors.accent-pink}"
-    textColor: "{colors.ink}"
-    typography: "{typography.heading-1}"
-
-  photo-card:
-    rounded: "{rounded.md}"
-    captionTypography: "{typography.link}"
-    captionColor: "{colors.ink}"
-
-  testimonial-card:
-    backgroundColor: "rotates across {colors.stone}, {colors.white}, {colors.accent-yellow}, {colors.accent-lime}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    quoteTypography: "{typography.body}"
-    nameTypography: "{typography.title}"
-    roleColor: "{colors.text-muted}"
-    layout: "staggered, alternating left/right horizontal offset down the page"
-
-  logo-bar:
-    backgroundColor: "{colors.panel-dark}"
-    headingTypography: "{typography.heading-3}"
-    headingColor: "{colors.text-on-dark}"
-    logoColor: "{colors.text-on-dark-muted}"
-
-  blog-card:
-    rounded: "{rounded.md}"
-    imageTreatment: "duotone / grayscale + single accent-color overlay, rotates per card"
-    titleTypography: "{typography.body-sm}"
-    titleWeight: 700
-    authorColor: "{colors.text-muted}"
-
-  footer:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    linkColor: "{colors.text-muted}"
-    columnHeadingTypography: "{typography.label}"
-    bodyTypography: "{typography.body-sm}"
-
-  # ─── Examples (illustrative) — kit-mirror surfaces referencing brand primitives ───
-  ex-pricing-tier:
-    description: "Default tier card. Re-uses testimonial-card chrome with brand stone surface."
-    backgroundColor: "{colors.stone}"
-    textColor: "{colors.ink}"
-    borderColor: "{colors.hairline}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.lg}"
-  ex-pricing-tier-featured:
-    description: "Featured tier — polarity-flipped panel-dark surface, matching the quote-panel and logo-bar treatment."
-    backgroundColor: "{colors.panel-dark}"
-    textColor: "{colors.text-on-dark}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.lg}"
-  ex-product-selector:
-    description: "Feature-summary card — re-purposed for SaaS / B2B verticals (NOT a literal product gallery)."
-    backgroundColor: "{colors.accent-yellow}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.lg}"
-  ex-cart-drawer:
-    description: "Subscription / line-item summary — re-purposed for SaaS / B2B (not a literal cart)."
-    backgroundColor: "{colors.white}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.lg}"
-    item-divider: "{colors.hairline}"
-  ex-app-shell-row:
-    description: "Sidebar nav row inside an App Shell example. Active state uses accent-pink as the indicator."
-    backgroundColor: "{colors.canvas}"
-    activeIndicator: "{colors.accent-pink}"
-    rounded: "{rounded.sm}"
-    padding: "{spacing.xs} {spacing.md}"
-  ex-data-table-cell:
-    description: "Default data-table th + td chrome. Header uses bold label typography; body uses body-sm."
-    headerBackground: "{colors.canvas-warm}"
-    headerTypography: "{typography.label}"
-    bodyTypography: "{typography.body-sm}"
-    cellPadding: "{spacing.sm} {spacing.md}"
-    rowBorder: "{colors.hairline}"
-  ex-auth-form-card:
-    description: "Sign-in / sign-up card. Re-uses testimonial-card chrome on a warm canvas fill."
-    backgroundColor: "{colors.canvas-warm}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.lg}"
-  ex-modal-card:
-    description: "Modal dialog surface — same chrome as product-screenshot-card with a soft lift shadow."
-    backgroundColor: "{colors.white}"
-    rounded: "{rounded.lg}"
-    padding: "{spacing.lg}"
-  ex-empty-state-card:
-    description: "Empty-state illustration frame — a natural home for a scattered decorative-shape cluster."
-    backgroundColor: "{colors.canvas-warm}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.xxl}"
-    captionTypography: "{typography.body}"
-  ex-toast:
-    description: "Toast notification surface — accent-lime fill, testimonial-card shape."
-    backgroundColor: "{colors.accent-lime}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.sm} {spacing.md}"
-    typography: "{typography.body-sm}"
-
----
-
 ## Overview
 
-Streamtime is a project-management tool for creative businesses, and its marketing site reads like a designer's collage board rather than a software product page. Where a system like Mobbin's disappears behind its content, Streamtime's chrome *is* the content: a giant bespoke hand-lettered wordmark (`hero-wordmark`), a scatter of torn-paper sunbursts and squiggles (`decorative-shape`), and a rotating four-color accent palette that appears on nearly every scroll-stop rather than being rationed.
+Wired is the flagship technology-magazine brand under Condé Nast — and the web surface refuses to dress itself as a SaaS marketing site. The page is unmistakably an editorial product: a white canvas, a strict black wordmark in the brand's proprietary `WiredDisplay` (a tall, narrow, high-contrast serif used at 64 px), and stacked story cards that read as a printed magazine grid ported to the screen. There is no atmospheric gradient, no decorative chrome, no chromatic accent — the brand's only colour beyond the black-and-white duet is the small `{colors.link}` (`#057dbc`) used for inline body links inside long-form articles.
 
-The page is built as a stack of alternating full-bleed "acts": a light cream hero, a near-black collage panel (`quote-panel`), a light product-screenshot section, a flat pink `cta-banner`, a light photo section, a warm beige testimonial field, a near-black `logo-bar`, and a light footer. Each panel swap is a hard color cut, not a gradient — the rhythm itself communicates section boundaries in place of dividers or cards-on-cards.
+Type carries the entire identity. Three families ladder the system: `WiredDisplay` (the proprietary high-contrast serif) for hero / section headlines; `BreveText` (a humanist serif) for long-form body and bylines; and `Apercu` (a humanist sans) for metadata, captions, eyebrow tags, and buttons. The pairing is editorial-grade: serifs for narrative, sans for navigation and structural labels.
 
-Texture is the other signature move: the decorative shapes (stars, triangles, circles, capsules) are rendered with a visible paper/fabric grain (`{textures.paper-grain}`), giving flat vector color a handmade, cut-and-pasted feel. That texture is deliberately absent from functional chrome — buttons, screenshot frames, and cards stay clean and flat — so it reads as illustration, not a global filter.
+Buttons are square. The brand uses `{rounded.none}` 0 px corners across the entire UI — newsletter sign-ups, login forms, "Read more" CTAs all render as sharp rectangles. The only circular shape is the `button-icon-circular` used for social-share affordances. There are no soft drop-shadows; the brand uses hairline borders for elevation when needed.
 
 **Key Characteristics:**
-- A bespoke, hand-lettered display wordmark (`hero-wordmark`) used once, at enormous scale, and never as a body typeface
-- Paper/fabric-textured decorative shapes (`decorative-shape`) — sunbursts, triangles, squiggles, capsules — scattered as brand punctuation, not confined to a hero
-- A rotating four-color accent palette (`{colors.accent-yellow}`, `{colors.accent-pink}`, `{colors.accent-lime}`, `{colors.accent-blue}`) spent generously, the opposite of a single-scarce-accent system
-- Full-bleed panel alternation between warm cream (`{colors.canvas}`) and near-black (`{colors.panel-dark}`) as the primary structural device
-- Chunky stadium-pill buttons (`{rounded.full}`) in flat ink or a single bright accent, no gradients or outlines on primary CTAs
-- Staggered, alternating-offset testimonial cards (`testimonial-card`) in rotating solid colors instead of a uniform grid
-- Grayscale or duotone photography treatment that keeps imported photos inside the brand's color logic rather than running full-color
+- A strict black-and-white duet with no chromatic accent except the inline link blue `{colors.link}`. The brand reads as a printed magazine.
+- Three-face typographic system — `WiredDisplay` serif for display, `BreveText` serif for body, `Apercu` sans for metadata and buttons.
+- Square buttons (`{rounded.none}`) — the brand never softens corners on interactive elements.
+- A magazine-style story grid: large feature card at top, two-up secondary, then a vertical stack of bylined story rows separated by `{colors.hairline}` 1 px dividers.
+- The brand's only signature decorative move is the **masthead band** — a thin black strip with the wordmark centred, no other decoration.
+- A near-black `{colors.ink}` (`#000000`) footer band, no graphics, just text columns and the wordmark repeating.
 
 ## Colors
 
-Source page: marketing homepage.
-
-### Ink & Panel
-- **Ink** (`{colors.ink}` — #18130F): Primary text color and the fill for the wordmark, monogram, and dark button chrome. A warm near-black, not a pure #000.
-- **Panel Dark** (`{colors.panel-dark}` — #211C17): The full-bleed dark background used for the "productive wellbeing" collage section and the brand logo bar — Streamtime's polarity-flip surface, playing the same structural role a dark footer plays in more minimal systems, but used mid-page as a section, not just at the close.
-
-### Accent Palette
-- **Marigold Yellow** (`{colors.accent-yellow}` — #F2C230): The "Book a demo" nav pill and one recurring testimonial-card fill.
-- **Hot Pink** (`{colors.accent-pink}` — #F23DAE): The flat full-bleed CTA banner background ("Ready to work well?") — the single boldest color move on the page.
-- **Lime** (`{colors.accent-lime}` — #CBDA2E): A testimonial-card fill and a recurring decorative-shape color.
-- **Periwinkle Blue** (`{colors.accent-blue}` — #6478E0): Used almost exclusively inside decorative shapes (the capsule/"bandage" form in the dark panel), rarely as a surface fill.
-- Unlike a single reserved accent, these four rotate freely across shapes, cards, and photo treatments — abundance, not scarcity, is the signal.
+### Brand & Accent
+- **Ink Black** (`{colors.primary}` — `#000000`): The brand's only "accent." Used for wordmark, headlines, CTAs, footer fill. Pure black, never softened.
 
 ### Surface
-- **Canvas** (`{colors.canvas}` — #FAF6ED): Default light background — hero, product screenshots, photo section, footer.
-- **Canvas Warm** (`{colors.canvas-warm}` — #EDE1C7): The deeper beige field behind the staggered testimonials, one step warmer than canvas to help the colorful cards float.
-- **Stone** (`{colors.stone}` — #C7B79C): A muted taupe used for one testimonial-card fill and several decorative shapes — the palette's "neutral" that still carries warmth and texture rather than reading as gray.
-- **Hairline** (`{colors.hairline}` — #E4DBCB): Faint dividers and screenshot-card borders on light backgrounds.
+- **Canvas** (`{colors.canvas}` — `#ffffff`): The default page background.
+- **Canvas Soft** (`{colors.canvas-soft}` — `#f5f5f5`): Rare tint used for the comment-section background and search-result row hover states (not in the main page rhythm).
+- **Hairline** (`{colors.hairline}` — `#e0e0e0`): 1 px dividers between story rows. The brand's only "line."
 
 ### Text
-- **Ink** / **Ink Soft** (`{colors.ink}` / `{colors.ink-soft}`): Headings and body copy on light surfaces.
-- **Muted** (`{colors.text-muted}` — #6E6153): Secondary copy — feature blurbs, testimonial roles, footer links.
-- **Faint** (`{colors.text-faint}` — #A79C8C): Tertiary/fine print.
-- **On Dark** / **On Dark Muted** (`{colors.text-on-dark}` / `{colors.text-on-dark-muted}`): Text and logo treatments inside `panel-dark` sections.
+- **Ink** (`{colors.ink}` — `#000000`): Every headline, every body paragraph in BreveText.
+- **Ink Soft** (`{colors.ink-soft}` — `#1a1a1a`): A near-black variant used for caption-strong / footer link emphasis.
+- **Body** (`{colors.body}` — `#757575`): Secondary metadata — bylines, timestamps, supporting body lines.
 
 ### Semantic
-- No dedicated success/warning/error palette appears on marketing surfaces; the accent palette itself carries all emphasis, with pink reserved for the highest-stakes commercial moment (the CTA banner).
+The brand operates with one inline link colour and no separate error / success / warning palette in its marketing surface. Validation cues on form pages use the ink black + body grey hierarchy.
+
+- **Link** (`{colors.link}` — `#057dbc`): The inline body-link blue. Used only inside long-form article body copy, never on UI buttons or navigation.
 
 ## Typography
 
 ### Font Family
+Three families ladder the system:
+1. **WiredDisplay** — the proprietary tall-narrow high-contrast serif used exclusively for display headlines (64 px hero, scaling down to 26 px sub-display). The brand's most-recognisable typographic signature.
+2. **BreveText** — the proprietary humanist serif used for long-form body, bylines, and editorial captions. Used at 16 – 19 px line-height 1.45 – 1.50 for comfortable reading density.
+3. **Apercu** — a humanist sans used for nav, button labels, category eyebrows, metadata, and captions. Weights 400 / 700.
 
-A geometric grotesk with rounded terminals and notably heavy weights at large sizes — headings render chunky and confident (`heading-1` at 800), while body copy sits at a comfortable regular weight. Presumed family: **Basis Grotesque** or a close relative (General Sans, Aeonik, and Neue Montreal are reasonable substitutes if the exact face is unavailable — match the 400/700/800 weight positions and keep tight line-heights on display sizes).
-
-This system is entirely separate from the **hero wordmark**, which is not a typeface at all but a single hand-lettered logotype asset (see below) — the two never mix on the same line of text.
+Inter is loaded as a fourth fallback face for embedded utility surfaces (the comment section, account pages) but does not appear on the main marketing / article surface.
 
 ### Hierarchy
 
-| Token | Size | Weight | Line Height | Use |
-|---|---|---|---|---|
-| `{typography.heading-1}` | 56px | 800 | 1.05 | CTA banner headline ("Ready to work well?") |
-| `{typography.heading-2}` | 40px | 800 | 1.1 | Major section headings |
-| `{typography.heading-3}` | 28px | 700 | 1.2 | "Streamtime every step of the way", "Who's already using Streamtime?" |
-| `{typography.heading-4}` | 20px | 700 | 1.25 | Sub-headings, card headlines |
-| `{typography.title}` | 18px | 700 | 1.3 | Testimonial names, photo-card captions |
-| `{typography.body-lg}` | 20px | 400 | 1.5 | Hero tagline, dark-panel pull quote |
-| `{typography.body}` | 16px | 400 | 1.5 | Testimonial quotes, general paragraphs |
-| `{typography.body-sm}` | 14px | 400 | 1.45 | Footer links, feature blurbs, blog captions |
-| `{typography.link}` | 15px | 600 | 1.4 | Nav links, button labels |
-| `{typography.label}` | 12px | 700 | 1.3 | Small caps-style tags ("TODAY"), footer column headers |
-| `{typography.caption}` | 12px | 500 | 1.3 | Timezone clock list, fine print |
+| Token | Size | Weight | Line Height | Letter Spacing | Use |
+|---|---|---|---|---|---|
+| `{typography.display-hero}` | 64px | 400 | 59.5px | -0.5px | Cover-story headline. |
+| `{typography.display-lg}` | 48px | 400 | 50.4px | -0.4px | Major section / feature headlines. |
+| `{typography.display-md}` | 32px | 400 | 35.2px | -0.3px | Story-card large variant. |
+| `{typography.display-sm}` | 26px | 400 | 28px | 0 | Sub-display headings inside long-form articles. |
+| `{typography.display-xs}` | 20px | 700 | 24px | -0.28px | Sans (Apercu) display micro-headings for category callouts. |
+| `{typography.body-serif-lg}` | 19px | 400 | 27.93px | 0.108px | Lead paragraph of an article (BreveText). |
+| `{typography.body-serif-md}` | 16px | 400 | 24px | 0.09px | Default article body (BreveText). |
+| `{typography.body-md}` | 17px | 400 | 20px | 0 | Sans body (Apercu) for nav / metadata. |
+| `{typography.body-md-strong}` | 17px | 700 | 22px | -0.144px | Bold sans body. |
+| `{typography.body-sm}` | 14px | 400 | 18px | 0.4px | Secondary sans body. |
+| `{typography.body-sm-strong}` | 14px | 700 | 18px | 0.4px | Bold caption / nav-link. |
+| `{typography.byline}` | 12.73px | 700 | 28px | 0.108px | Article byline (BreveText). |
+| `{typography.caption}` | 12px | 400 | 16px | 0 | Fine print, image captions. |
+| `{typography.button-md}` | 16px | 700 | 20px | 0.3px | Button label. |
 
 ### Principles
-- **Weight does the shouting, not size alone.** An 800-weight headline next to 400-weight body copy at a smaller size creates contrast without needing more than one type family.
-- **Casual punctuation.** Headlines mix a bare statement ("A way better way of working"), a colon-led list ("Balance your workflow: plan, track, collaborate, thrive"), and a genuine question mark ("Ready to work well?") — no enforced terminal-period rule.
-- **Underline as emphasis, not just as link.** Inside the dark pull-quote, "productive wellbeing" is underlined mid-sentence to land the brand's core message, functioning more like a highlighter than a hyperlink.
-- **Long, generous line lengths on quotes.** Pull-quote and testimonial text run wide (constrained more by section width than by a narrow reading column), keeping the tone conversational rather than editorial.
+- **Serif for narrative, sans for structure.** The serif faces never carry button labels or nav text; the sans face never carries article body.
+- **Display weight 400** — the proprietary WiredDisplay reads as elegant by virtue of its thin-tall-narrow design at default weight, not via weight 700+.
+- **Bylines use BreveText weight 700 with relaxed line-height 2.2.** The vertical breathing is part of the editorial signature.
 
-### Note on the Wordmark
-
-The "STREAMTIME!" hero lockup is a bespoke hand-lettered/brush asset — thick, deliberately uneven marker strokes, an irregular baseline, and a stylized closing mark. It should be treated as a locked illustration (SVG/image), never rebuilt in a system font; the small `brandmark-monogram` ("sT") used in the nav is a separate, simplified mark, not a scaled-down crop of the hero wordmark.
+### Note on Font Substitutes
+The three proprietary faces have no exact substitutes. Best open-source approximations:
+- **WiredDisplay** — *Playfair Display* weight 400 at large display sizes captures the high-contrast didone feel, though wider than the brand's tall-narrow proportions.
+- **BreveText** — *Lora* or *Source Serif Pro* at 16 – 19 px.
+- **Apercu** — *Inter* or *Manrope* weights 400 / 700.
 
 ## Layout
 
 ### Spacing System
-- **Base unit**: 8px.
-- **Tokens**: `{spacing.xxs}` 4px · `{spacing.xs}` 8px · `{spacing.sm}` 12px · `{spacing.md}` 16px · `{spacing.lg}` 24px · `{spacing.xl}` 40px · `{spacing.xxl}` 64px · `{spacing.section}` 96px · `{spacing.section-lg}` 140px
-- Buttons are fixed-height pills padded `{spacing.sm} {spacing.xl}`; the generous horizontal padding (wider than a typical pill) is part of the chunky, tactile feel.
+- **Base unit**: 4 px.
+- **Tokens**: `{spacing.xxs}` 2 px · `{spacing.xs}` 4 px · `{spacing.sm}` 8 px · `{spacing.md}` 12 px · `{spacing.lg}` 16 px · `{spacing.xl}` 20 px · `{spacing.2xl}` 24 px · `{spacing.3xl}` 32 px · `{spacing.4xl}` 48 px.
+- **Section padding**: hero / story grid use `{spacing.4xl}` 48 px top/bottom on desktop.
+- **Story row padding**: `{spacing.lg}` 16 px vertical between bylined story rows.
 
 ### Grid & Container
-- Content rides a centered column for text-led moments (hero, CTA banner) and opens to full-bleed for color panels and photo/logo strips.
-- The product-screenshot section runs two large mockups side by side; the photo section below the CTA runs a clean 3-up grid (Agencies / In-house Teams / Architects); the blog/resources section closes on a 4-up card grid.
-- Testimonials break the grid deliberately: cards vary in width and alternate left/right horizontal offset down the page rather than aligning to a column.
-
-### Rhythm: Color Blocking as Structure
-Instead of whitespace alone separating sections, Streamtime alternates hard-edged full-bleed color panels — cream, near-black, cream, hot pink, cream, warm beige, near-black, cream — as its primary rhythm device. Each panel transition is an instant color cut with no gradient or border, so scrolling the page feels like flipping through colored paper stock. Within a panel, `{spacing.section}`–`{spacing.section-lg}` of internal padding keeps content from touching the color-cut edges.
+- Marketing content uses a wide container (~1400 px max).
+- Cover-story grid: 1 large hero + 2-up secondary stories + vertical stack.
+- Story-row stack: full-width single column with hairline dividers.
 
 ### Responsive Strategy
 
-#### Breakpoints (estimated)
+#### Breakpoints
+
 | Name | Width | Key Changes |
 |---|---|---|
-| xl | 1280px | Default desktop grid; hero wordmark spans full container width |
-| lg | 1024px | Screenshot mockups stack; photo 3-up holds |
-| md | 768px | Photo grid and blog grid drop to 2-up; testimonial stagger reduces offset |
-| sm | 640px | Single-column throughout; hero wordmark scales down and may wrap |
-| xs | 480px | Nav collapses to logomark + single CTA pill; footer columns stack fully |
+| Mobile | < 768px | Cover hero 64→40 px; all grids 1-up; hamburger nav. |
+| Tablet | 768–1023px | 2-up secondary story grid. |
+| Desktop | ≥ 1024px | Full magazine grid. |
 
 #### Touch Targets
-- All pill buttons and nav CTAs are fixed-height stadium shapes, comfortably touch-friendly.
-- The large decorative shapes are non-interactive illustration only — no touch targets are embedded in them.
+Button-primary renders ~44 px tall (12 vertical padding + 20 line). WCAG AAA at all widths.
 
 #### Collapsing Strategy
-- The staggered testimonial layout collapses to a single centered column on narrow viewports, losing the alternating offset but keeping the rotating card colors.
-- The two-mockup product-screenshot section stacks vertically rather than scaling both mockups down side by side, keeping UI details legible.
-- The dark collage panel's three-column layout (photo / photo / quote / photo) stacks to one column, with decorative shapes repositioned rather than dropped, since they carry brand personality.
+- Nav: full link row + Subscribe CTA at desktop. Hamburger at mobile.
+- Magazine grid: hero stays full-width; 2-up secondary drops to 1-up at mobile.
+- Story rows: stay single-column at all viewports.
 
-#### Photography & Imagery Treatment
-- Team/office photography in the 3-up "Designed for creative businesses" section runs full color with `{rounded.md}` corners.
-- Testimonial avatars are small circles with a colored emoji/reaction-style icon rather than a plain headshot in most cards.
-- Blog/resource card imagery is processed in duotone or grayscale-plus-single-accent (a pink-tinted hand photo, a yellow-tinted illustration, a blue-tinted paper texture), keeping every photo inside the four-color accent system.
+#### Image Behavior
+- Cover images: full-bleed 16:9 hero / 4:3 secondary.
+- Article body images: full-width inside the article column.
+- Author avatars: small inline circular crops next to bylines.
 
 ## Elevation & Depth
 
 | Level | Treatment | Use |
 |---|---|---|
-| 0 | Flat on `{colors.canvas}` or `{colors.panel-dark}` | Default — most of every section |
-| 1 | Solid accent or stone fill, no border | `testimonial-card`, `nav-pill-accent` |
-| 2 | Soft lift shadow | Floating `testimonial-card`s and `product-screenshot-card`s that need to visually separate from a busy background |
-| Inverse | `{colors.panel-dark}` fill, `{colors.text-on-dark}` text | `quote-panel`, `logo-bar` |
+| Level 0 — Flat | No shadow, no border. | Default — almost every surface lives at this level. |
+| Level 1 — Hairline | 1 px solid `{colors.hairline}` border. | Story-row dividers, input borders. |
+| Level 2 — Heavy Black Border | 2 px solid `{colors.ink}` border. | Subscribe CTA on certain campaign moments. |
 
-Depth here comes from color contrast and overlap, not a shadow system. Decorative shapes stack directly on top of photography and on top of each other (a circle behind a triangle behind a squiggle) to imply layering, and the staggered testimonial cards use their alternating horizontal offset — not elevation — to create visual movement down the page. The one consistent shadow use is a soft lift under floating cards that sit directly on a busy or textured background, purely for legibility.
-
-### Decorative Depth
-- **Paper-cutout layering** — every `decorative-shape` looks physically layered, like cut paper or fabric pinned to a board, reinforced by the grain texture and by shapes partially overlapping photography.
-- **Staggered stagger** — the testimonial section's alternating left/right card placement is the page's main "depth" device outside the collage panel, giving a flat beige field a sense of scattered, human arrangement.
-- **Full-bleed color as a stage** — the near-black panels function like a stage backdrop, making the textured shapes and light-colored photography inside them pop forward.
+The brand uses no drop-shadows. Surface contrast and hairline borders carry all visual hierarchy.
 
 ## Shapes
 
@@ -413,131 +126,119 @@ Depth here comes from color contrast and overlap, not a shadow system. Decorativ
 
 | Token | Value | Use |
 |---|---|---|
-| `{rounded.none}` | 0px | Decorative shapes (custom cut paths), full-bleed marquee/photo strips |
-| `{rounded.sm}` | 12px | Small chips, app-shell rows |
-| `{rounded.md}` | 20px | Photo cards, testimonial cards, blog cards |
-| `{rounded.lg}` | 32px | Product-screenshot mockup containers |
-| `{rounded.full}` | 9999px | Every button, every pill |
+| `{rounded.none}` | 0px | Every interactive shape — buttons, inputs, cards. The brand's signature square geometry. |
+| `{rounded.full}` | 9999px | Circular icon containers only (social-share, account avatar). |
 
-### Decorative Shape Language
-- **Sunbursts** — jagged, scribble-edged star/flower shapes in yellow, stone, and white; the most repeated motif, echoing a hand-drawn asterisk.
-- **Triangles & circles** — simple geometric primitives in solid textured color, used as connective tissue between photos and text.
-- **Squiggles / zigzags** — a hand-drawn wavy line, usually white, layered over a solid shape for extra energy.
-- **Capsules ("bandage" shapes)** — elongated stadium forms (blue, pink) that echo the button pill radius but at illustration scale.
-- All decorative shapes carry `{textures.paper-grain}` — a visible fiber/grain finish that distinguishes them from the flat, clean fills used on functional UI.
-
-### Photography & Imagery Geometry
-- Team and office photography sits in `{rounded.md}` frames, full color, no texture overlay.
-- Curator/testimonial avatars are small `{rounded.full}` circles, occasionally paired with a colored reaction icon instead of a logo badge.
-- Blog card imagery is duotone/grayscale-plus-accent inside `{rounded.md}` frames, keeping photography inside the brand's four-color logic even when the source photo wasn't shot on-brand.
+### Photography Geometry
+- Cover stories: 16:9 hero, edge-to-edge.
+- Secondary story cards: 4:3 thumbnails.
+- Article body images: native aspect, full column width.
+- Bylines / avatars: circular `{rounded.full}` 28 px crops.
 
 ## Components
 
 ### Buttons
 
-**`nav-pill-dark`** — "Menu"
-- Fill `{colors.ink}`, label `{colors.canvas}` in `{typography.link}`, `{rounded.full}`
+**`button-primary`** — the square black CTA.
+- Background `{colors.primary}`, text `{colors.on-primary}`, label `{typography.button-md}` (Apercu 16 px / 700 / 0.3 px tracking), padding `{spacing.md} {spacing.xl}`, shape `{rounded.none}` 0 px.
 
-**`nav-pill-accent`** — "Book a demo"
-- Fill `{colors.accent-yellow}`, label `{colors.ink}`, `{rounded.full}` — the one accent-filled nav element, marking it as the primary commercial action
+**`button-outline`** — the white outline CTA.
+- Background `{colors.canvas}`, text `{colors.ink}`, 1 px solid `{colors.ink}` border, same typography / padding / shape.
 
-**`nav-link`** — "Log in", "Sign up" (top nav)
-- Text-only, `{colors.ink}`, `{typography.link}`, no fill or border
-
-**`button-primary`** — "Sign up" (CTA banner)
-- Fill `{colors.ink}`, label `{colors.canvas}`, `{rounded.full}`, generous horizontal padding — sits confidently on the hot-pink banner by staying pure black-on-white rather than trying to compete in color
-
-### Panels & Banners
-
-**`quote-panel`** — the dark collage section
-- `{colors.panel-dark}` fill, `{colors.text-on-dark}` text in `{typography.body-lg}`, houses photography and `decorative-shape`s alongside a left-aligned pull quote with an underlined closing phrase
-
-**`cta-banner`** — "Ready to work well?"
-- Full-bleed `{colors.accent-pink}` fill, `{colors.ink}` headline in `{typography.heading-1}`, paired with a single `button-primary`
-
-**`logo-bar`** — "Who's already using Streamtime?"
-- Full-bleed `{colors.panel-dark}` fill, centered `{typography.heading-3}` heading in `{colors.text-on-dark}`, followed by a row of partner wordmarks in a muted light tone
+**`button-icon-circular`** — the circular share-icon button.
+- Background `{colors.canvas}`, ink icon, shape `{rounded.full}`.
 
 ### Cards & Containers
 
-**`product-screenshot-card`**
-- `{colors.white}` fill, `{rounded.lg}` corners, thin `{colors.hairline}` border; frames an embedded product UI (kanban board, budget dashboard) at near-native scale rather than a cropped thumbnail
+**`story-card-large`** — the cover-story card with `{typography.display-md}` headline.
+- Background `{colors.canvas}`, text `{colors.ink}`, padding `{spacing.lg}`. No border — the card lives on the canvas with the photo doing the work.
 
-**`testimonial-card`**
-- Fill rotates across `{colors.stone}`, `{colors.white}`, `{colors.accent-yellow}`, `{colors.accent-lime}`; `{rounded.md}` corners; quote in `{typography.body}`, name in `{typography.title}`, role in `{colors.text-muted}` `{typography.caption}`
-- Staggered alternating left/right placement down a `{colors.canvas-warm}` field — no two adjacent cards share a color or alignment
+**`story-card`** — the secondary story card.
+- Background `{colors.canvas}`, text `{colors.ink}`, padding `{spacing.md}`. Photo at top, sans display heading + body lead below.
 
-**`photo-card`**
-- `{rounded.md}` image, single-line `{typography.link}` caption below (e.g. "Agencies", "Architects") — no overlay text on the photo itself
+**`story-row`** — the bylined story list row.
+- Background `{colors.canvas}`, text `{colors.ink}`, 1 px solid `{colors.hairline}` bottom border, body in `{typography.body-md-strong}`, padding `{spacing.lg}` 0.
 
-**`blog-card`**
-- `{rounded.md}` duotone/grayscale image, bold `{typography.body-sm}` title, author byline in `{colors.text-muted}`
+### Inputs & Forms
+
+**`text-input`** — the standard text input.
+- Background `{colors.canvas}`, text `{colors.ink}`, 1 px solid `{colors.ink}` border, body in `{typography.body-md}`, padding `{spacing.md} {spacing.lg}`, shape `{rounded.none}`.
 
 ### Navigation
 
-**`brandmark-monogram`** — Top Nav (Desktop & Mobile)
-- Compact "sT" mark, left-aligned, paired with `nav-pill-dark` ("Menu") immediately beside it; utility links and CTAs sit right-aligned
+**`nav-bar`** — the top nav, light by default.
+- Background `{colors.canvas}`, text `{colors.ink}`, padding `{spacing.md} {spacing.xl}`. Layout: hamburger left, masthead centre, Subscribe right.
+
+**`nav-link`** — link items inside nav.
+- Text `{colors.ink}`, set in `{typography.body-sm-strong}` (Apercu 14 / 700).
+
+**`footer`** — the black footer band.
+- Background `{colors.primary}`, text `{colors.on-primary}`, padding `{spacing.4xl} {spacing.xl}`. Body in `{typography.body-sm}` (Apercu 14 / 400). Footer column eyebrows in `{typography.body-sm-strong}`.
 
 ### Signature Components
 
-**`hero-wordmark`** — the full-bleed "STREAMTIME!" hand-lettered logotype anchoring the hero, surrounded by a loose row of `decorative-shape`s at its base
+**`hero-band`** — the white hero band hosting the cover-story.
+- Background `{colors.canvas}`, text `{colors.ink}`, padding `{spacing.4xl} {spacing.xl}`. Cover headline in `{typography.display-hero}` (WiredDisplay 64 px).
 
-**`decorative-shape`** — the recurring sunburst/triangle/circle/squiggle/capsule vocabulary, textured and rotated across the accent palette, used as connective punctuation throughout the page rather than confined to one hero moment
+**`masthead-band`** — the thin top band with the wordmark.
+- Background `{colors.canvas}`, text `{colors.ink}`, padding `{spacing.md} {spacing.xl}`. The wordmark sits centred; flanked by section nav.
 
-**`feature-row`** — the short label-plus-blurb row under the product screenshots ("Manage schedules, track time...", "Report on work in progress...") — no icons, just `{typography.title}` micro-headings over `{typography.body-sm}` copy
+**`category-eyebrow`** — the small uppercase category label above story headlines.
+- Text `{colors.ink}`, set in `{typography.body-sm-strong}` (Apercu 14 / 700 — though some campaigns use ALL CAPS via CSS).
+
+**`byline-row`** — the article byline strip.
+- Background `{colors.canvas}`, text `{colors.body}`, body in `{typography.byline}` (BreveText 12.73 / 700 / line-height 2.2). Includes an author avatar + name + date.
+
+**`hairline-divider`** — the 1 px line between story rows.
+- 1 px solid `{colors.hairline}`.
 
 ### Examples (illustrative)
 
-> Kit-mirror demonstration surfaces. Each `ex-*` entry references brand-native primitives via token syntax so downstream consumers re-skin the same 10 surfaces consistently; none carries invented literal values.
+> Auto-derived kit-mirror demonstration surfaces (`scripts/derive-examples-block.mjs`). Each `ex-*` entry references brand-native primitives so downstream consumers (`/preview-design`, `/generate-kit`) re-skin the same 10 surfaces consistently. `TO_FILL` markers indicate missing primitives — resolve in the LLM judgment pass.
 
-**`ex-pricing-tier`** — Default tier card. Re-uses testimonial-card chrome with brand stone surface.
+**`ex-pricing-tier`** — Default Pricing tier card. Re-uses feature-card chrome with brand canvas-soft surface.
 - Properties: `backgroundColor`, `textColor`, `borderColor`, `rounded`, `padding`
 
-**`ex-pricing-tier-featured`** — Featured tier — polarity-flipped panel-dark surface, matching the quote-panel and logo-bar treatment.
+**`ex-pricing-tier-featured`** — Featured/highlighted tier — polarity-flipped surface (dark fill + light text in light mode, light fill + dark text in dark mode).
 - Properties: `backgroundColor`, `textColor`, `rounded`, `padding`
 
-**`ex-product-selector`** — Feature-summary card — re-purposed for SaaS / B2B verticals (NOT a literal product gallery).
+**`ex-product-selector`** — What's Included summary card — re-purposed for SaaS / B2B verticals (NOT a literal product gallery).
 - Properties: `backgroundColor`, `rounded`, `padding`
 
-**`ex-cart-drawer`** — Subscription / line-item summary — re-purposed for SaaS / B2B (not a literal cart).
+**`ex-cart-drawer`** — Subscription summary — re-purposed for SaaS / B2B (line items per add-on, not literal cart).
 - Properties: `backgroundColor`, `rounded`, `padding`, `item-divider`
 
-**`ex-app-shell-row`** — Sidebar nav row inside an App Shell example. Active state uses accent-pink as the indicator.
+**`ex-app-shell-row`** — Sidebar nav row inside the App Shell example. Active state uses brand primary as the indicator.
 - Properties: `backgroundColor`, `activeIndicator`, `rounded`, `padding`
 
-**`ex-data-table-cell`** — Default data-table th + td chrome. Header uses bold label typography; body uses body-sm.
+**`ex-data-table-cell`** — Default data-table th + td chrome. Header uses mono-caps eyebrow typography; body uses body-sm.
 - Properties: `headerBackground`, `headerTypography`, `bodyTypography`, `cellPadding`, `rowBorder`
 
-**`ex-auth-form-card`** — Sign-in / sign-up card. Re-uses testimonial-card chrome on a warm canvas fill.
+**`ex-auth-form-card`** — Sign-in / sign-up card. Re-uses feature-card chrome with text-input primitives inside.
 - Properties: `backgroundColor`, `rounded`, `padding`
 
-**`ex-modal-card`** — Modal dialog surface — same chrome as product-screenshot-card with a soft lift shadow.
+**`ex-modal-card`** — Modal dialog surface — same chrome as feature-card with elevated shadow.
 - Properties: `backgroundColor`, `rounded`, `padding`
 
-**`ex-empty-state-card`** — Empty-state illustration frame — a natural home for a scattered decorative-shape cluster.
+**`ex-empty-state-card`** — Empty-state illustration frame.
 - Properties: `backgroundColor`, `rounded`, `padding`, `captionTypography`
 
-**`ex-toast`** — Toast notification surface — accent-lime fill, testimonial-card shape.
+**`ex-toast`** — Toast notification surface — feature-card shape + medium shadow.
 - Properties: `backgroundColor`, `rounded`, `padding`, `typography`
+
 
 ## Do's and Don'ts
 
 ### Do
-- Let full-bleed color panels — not cards or dividers — carry the primary section rhythm.
-- Reserve the hand-lettered `hero-wordmark` for the brand moment only; never set running text in it.
-- Rotate the four-color accent palette freely across cards, shapes, and photo treatments rather than rationing it to one hue.
-- Apply `{textures.paper-grain}` to decorative illustration only, keeping buttons, inputs, and cards flat and clean.
-- Stagger repeating card sets (testimonials) with alternating offset and rotating fill colors instead of a uniform grid.
-- Keep every button a `{rounded.full}` stadium pill with generous horizontal padding.
-- Process imported photography (blog imagery especially) into duotone or grayscale-plus-accent so it stays inside the brand's color logic.
-- Use `{colors.panel-dark}` as a structural "dark act," not just a footer — it can appear mid-page.
+- Reserve `{colors.primary}` black for the wordmark, every CTA, and the footer fill. The brand IS the strict black-on-white duet.
+- Set hero headlines in `{typography.display-hero}` (WiredDisplay 64 px weight 400). The proprietary serif IS the brand's typographic signature.
+- Use `{rounded.none}` 0 px on every button and form input. The brand reads as a printed magazine — square corners are non-negotiable.
+- Pair WiredDisplay (serif display) with BreveText (serif body) and Apercu (sans labels). Three faces, three roles.
+- Render story rows with `{colors.hairline}` 1 px dividers — the brand's only elevation cue.
 
 ### Don't
-- Don't rebuild the hero wordmark in a system font — it's a locked illustration asset, not a type style.
-- Don't apply paper-grain texture to functional UI chrome; it will muddy legibility and dilute its specialness.
-- Don't confine the decorative shapes to the hero — let them recur as connective tissue across sections.
-- Don't align repeating testimonial/quote cards to a rigid grid; the alternating stagger is a deliberate signature, not an oversight.
-- Don't mix more than one bold accent fill within a single small component (e.g., an accent-pink card with an accent-blue button) — one accent per surface.
-- Don't square off pill geometry at small sizes; badges and buttons stay stadium-shaped even when compact.
-- Don't let full-color, un-treated photography appear next to the duotone blog imagery — pick one treatment per section and hold it.
-- Don't add soft shadows everywhere; reserve lift shadows for cards that genuinely need to separate from a busy or textured background.
+- Don't introduce a chromatic brand accent. The link blue is reserved for inline body links inside articles only.
+- Don't round button corners. The brand never softens its rectangular geometry.
+- Don't drop a soft drop-shadow on cards. Surface contrast and hairlines carry elevation.
+- Don't substitute the proprietary serif faces with a generic sans for display. The serif voice is the brand.
+- Don't promote display weight beyond 400. The brand's elegance is in the typeface design, not bold weight.

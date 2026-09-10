@@ -6,7 +6,6 @@ import { supabase } from '../lib/supabase'
 import type { Classroom } from '../lib/types'
 import { StatCard } from '../components/BrandBits'
 import { ClassroomCard } from '../components/ClassroomCard'
-import { DecorativeShape } from '../components/DecorativeShape'
 import { CreateClassModal, JoinClassModal } from './ClassesPage'
 
 export function DashboardPage() {
@@ -66,8 +65,8 @@ export function DashboardPage() {
   return (
     <div>
       <div className="mb-8">
-        <p className="eyebrow flex items-center gap-2"><DecorativeShape kind="sunburst" color="#F2C230" size={14} />{isTeacher ? 'Teacher dashboard' : 'Student dashboard'}</p>
-        <h1 className="h-display mt-2 text-4xl sm:text-5xl" style={{ color: '#18130F' }}>Welcome, {profile.full_name.split(' ')[0]}</h1>
+        <p className="eyebrow">{isTeacher ? 'Teacher dashboard' : 'Student dashboard'}</p>
+        <h1 className="mt-2 font-display text-3xl font-bold" style={{ color: '#18130F' }}>Welcome, {profile.full_name.split(' ')[0]}</h1>
         <p className="mt-2" style={{ color: '#6E6153' }}>{isTeacher ? 'Manage your classes and student learning.' : 'Continue learning from your classrooms.'}</p>
       </div>
 
@@ -78,11 +77,11 @@ export function DashboardPage() {
       </div>
 
       <div className="mt-10 flex flex-wrap items-end justify-between gap-3">
-        <div><h2 className="h-section flex items-center gap-2 text-2xl" style={{ color: '#18130F' }}><span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: '#F23DAE' }} />My Classes</h2><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>Your recent classrooms <span className="ml-1 rounded-full px-2 py-0.5 text-xs font-bold" style={{ background: '#EDE1C7', color: '#18130F' }}>{classes.length}</span></p></div>
+        <div><h2 className="font-display text-xl font-bold" style={{ color: '#18130F' }}>My Classes</h2><p className="mt-1 text-sm" style={{ color: '#6E6153' }}>Your recent classrooms <span className="ml-1 rounded-full px-2 py-0.5 text-xs font-bold" style={{ background: '#EDE1C7', color: '#18130F' }}>{classes.length}</span></p></div>
         <div className="flex flex-wrap gap-2">
           <Link to={`/${profile.role}/classes`} className="btn-secondary">View all <ArrowRight size={16} /></Link>
           {isTeacher ? (
-            <button className="btn-accent" onClick={() => setShowCreate(true)}><Plus size={17} />New classroom</button>
+            <button className="btn-primary" onClick={() => setShowCreate(true)}><Plus size={17} />New classroom</button>
           ) : (
             <button className="btn-primary" onClick={() => setShowJoin(true)}><LogIn size={17} />Join class</button>
           )}
@@ -97,7 +96,7 @@ export function DashboardPage() {
             <p className="mt-1 text-sm" style={{ color: '#6E6153' }}>{isTeacher ? 'Create your first classroom to get started.' : 'Join a classroom using the code given by your teacher.'}</p>
             <div className="mt-5 flex justify-center">
               {isTeacher ? (
-                <button className="btn-accent" onClick={() => setShowCreate(true)}><Plus size={17} />New classroom</button>
+                <button className="btn-primary" onClick={() => setShowCreate(true)}><Plus size={17} />New classroom</button>
               ) : (
                 <button className="btn-primary" onClick={() => setShowJoin(true)}><LogIn size={17} />Join class</button>
               )}
