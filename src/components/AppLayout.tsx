@@ -1,6 +1,6 @@
 import { BookOpen, CircleUserRound, LayoutDashboard, LogOut, Menu, School, X } from 'lucide-react'
 import { useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export function AppLayout() {
@@ -12,6 +12,7 @@ export function AppLayout() {
   const links = [
     { to: base, label: 'Dashboard', icon: LayoutDashboard, end: true },
     { to: `${base}/classes`, label: 'My Classes', icon: School, end: false },
+    { to: `${base}/profile`, label: 'Profile', icon: CircleUserRound, end: true },
   ]
 
   const sidebar = (
@@ -64,9 +65,9 @@ export function AppLayout() {
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-white/90 px-4 backdrop-blur md:px-6 lg:px-8" style={{ borderColor: '#eef0f3' }}>
           <button className="rounded-full p-2 hover:bg-black/5 lg:hidden" onClick={() => setMobileOpen(true)}><Menu size={22} /></button>
           <div className="hidden items-center gap-2 text-sm font-medium sm:flex" style={{ color: '#555a6a' }}><BookOpen size={16} /> Learn • Teach • Grow</div>
-          <div className="ml-auto flex h-9 w-9 items-center justify-center rounded-full bg-white" style={{ color: '#1c1c1e', border: '1px solid #e0e2e8' }}>
+          <Link to={`${base}/profile`} aria-label="Profile" className="ml-auto flex h-9 w-9 items-center justify-center rounded-full bg-white transition hover:bg-black/5" style={{ color: '#1c1c1e', border: '1px solid #e0e2e8' }}>
             <CircleUserRound size={20} />
-          </div>
+          </Link>
         </header>
         <main className="mx-auto max-w-7xl p-4 md:p-6 lg:p-8"><Outlet /></main>
       </div>
