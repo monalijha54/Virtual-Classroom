@@ -1,0 +1,23 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import { AuthProvider } from './context/AuthContext'
+import App from './App'
+import './index.css'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <AuthProvider>
+        <App />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: { background: '#FFFFFF', color: '#1c1c1e', borderRadius: 12, fontWeight: 500, fontSize: 14, border: '1px solid #eef0f3' },
+          }}
+        />
+      </AuthProvider>
+    </BrowserRouter>
+  </StrictMode>,
+)

@@ -1,0 +1,112 @@
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Miro playful classroom system */
+  --color-canvas: #ffffff;
+  --color-surface: #f7f8fa;
+  --color-surfacesoft: #fafbfc;
+  --color-surfaceyellow: #fff8e0;
+  --color-surfacefeatured: #f5f3ff;
+  --color-ink: #1c1c1e;
+  --color-inkdeep: #050038;
+  --color-charcoal: #2c2c34;
+  --color-slate: #555a6a;
+  --color-steel: #6b6f7e;
+  --color-stone: #8e91a0;
+  --color-muted: #a5a8b5;
+  --color-hairline: #e0e2e8;
+  --color-hairlinesoft: #eef0f3;
+  --color-hairlinestrong: #c7cad5;
+  --color-primary: #1c1c1e;
+  --color-onprimary: #ffffff;
+  --color-brandyellow: #ffd02f;
+  --color-brandyellowdeep: #fcb900;
+  --color-yellowlight: #fff4c4;
+  --color-yellowdark: #746019;
+  --color-brandblue: #4262ff;
+  --color-bluepressed: #2a41b6;
+  --color-brandcoral: #ff9999;
+  --color-corallight: #ffc6c6;
+  --color-coraldark: #600000;
+  --color-brandrose: #ffd8f4;
+  --color-roselight: #fde0f0;
+  --color-brandteal: #0fbcb0;
+  --color-teallight: #c3faf5;
+  --color-mossdark: #187574;
+  --color-brandorangelight: #ffe6cd;
+  --color-brandred: #fbd4d4;
+  --color-success: #00b473;
+  --color-footerbg: #1c1c1e;
+  /* legacy aliases so old inline styles keep working during migration */
+  --color-warm: #fff8e0;
+  --color-inksoft: #2c2c34;
+  --color-panel: #1c1c1e;
+  --color-accent: #ffd02f;
+  --color-pinky: #ffd8f4;
+  --color-limey: #fff4c4;
+  --color-peri: #4262ff;
+  --color-stonebrand: #e0e2e8;
+  --color-stonedark: #8e91a0;
+  --color-mutedbrand: #6b6f7e;
+  --color-faint: #a5a8b5;
+  --color-ondark: #ffffff;
+  --color-ondarkmuted: #a5a8b5;
+  --font-display: "General Sans", "Roobert PRO", Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-canvas);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--color-canvas); color: var(--color-ink); }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+
+h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+
+/* ---- Miro primitives (same class names, new skin) ---- */
+.card { @apply rounded-[16px] border bg-white shadow-none; border-color: var(--color-hairlinesoft); }
+.card-warm { @apply rounded-[28px] border; background: var(--color-surfaceyellow); border-color: var(--color-hairlinesoft); }
+.input { @apply w-full rounded-[8px] border bg-white px-3.5 text-sm outline-none transition; border-color: var(--color-hairlinestrong); color: var(--color-ink); height: 44px; }
+.input:focus { border-color: var(--color-brandblue); box-shadow: 0 0 0 3px rgba(66, 98, 255, 0.15); }
+.input::placeholder { color: var(--color-muted); }
+.input-has-left-icon { padding-left: 2.5rem; }
+.input-has-right-icon { padding-right: 2.5rem; }
+.label { @apply mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.05em]; color: var(--color-steel); }
+
+.btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[14px] font-medium transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; background: var(--color-primary); color: var(--color-onprimary); }
+.btn-primary:hover { background: var(--color-charcoal); }
+.btn-accent { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[14px] font-medium transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; background: var(--color-brandblue); color: #fff; }
+.btn-accent:hover { background: var(--color-bluepressed); }
+.btn-yellow { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium transition active:scale-[0.98]; background: var(--color-brandyellow); color: var(--color-primary); }
+.btn-yellow:hover { background: var(--color-brandyellowdeep); }
+.btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-full border bg-white px-6 py-2.5 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50; border-color: var(--color-hairlinestrong); color: var(--color-ink); }
+.btn-secondary:hover { background: var(--color-surface); }
+.btn-danger { @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition; background: var(--color-brandred); color: var(--color-coraldark); }
+.btn-danger:hover { background: var(--color-corallight); }
+
+.pill { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold; }
+.pill-yellow { background: var(--color-surfaceyellow); color: var(--color-yellowdark); }
+.pill-purple { background: var(--color-surfacefeatured); color: var(--color-brandblue); }
+.pill-coral { background: var(--color-corallight); color: var(--color-coraldark); }
+.pill-teal { background: var(--color-teallight); color: var(--color-mossdark); }
+.pill-rose { background: var(--color-roselight); color: var(--color-ink); }
+.eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.05em]; color: var(--color-steel); }
+.h-display { font-family: var(--font-display); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
+.h-section { font-family: var(--font-display); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; }
+
+/* Sticky-note board texture — replaces paper grain */
+.shape-grain { position: relative; }
+.board-dots { background-image: radial-gradient(rgba(28,28,30,0.08) 1.2px, transparent 1.2px); background-size: 18px 18px; }
+.whiteboard-mockup { border: 1px solid var(--color-hairlinesoft); box-shadow: rgba(5, 0, 56, 0.08) 0px 12px 32px -4px; }
+
+/* Thin scrollbar for tab rails */
+.tab-rail::-webkit-scrollbar { display: none; }
+.tab-rail { scrollbar-width: none; }
